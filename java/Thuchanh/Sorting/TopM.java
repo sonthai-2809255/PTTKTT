@@ -47,7 +47,7 @@ public class TopM {
      */
     public static void main(String[] args) throws IOException{
         System.setIn(new FileInputStream(new File("tinyBatch.txt")));
-        int m = Integer.parseInt(args[0]); 
+        int m = Integer.parseInt(args[3]); 
         MinPQ<Transaction> pq = new MinPQ<Transaction>(m+1);
 
         while (StdIn.hasNextLine()) {

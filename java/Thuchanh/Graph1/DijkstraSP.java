@@ -85,7 +85,16 @@ public class DijkstraSP {
         pq.insert(s, distTo[s]);
 
     // Bo sung vong while chon phan tu min trong PQ .......
-
+        // nới lỏng các đỉnh theo thứ tự khoảng cách từ đỉnh nguồn s
+        while(!pq.isEmpty()){
+            int v= pq.delMin();//lấy đỉnh cuối của đường đi hiện tại có khoảng cách nhỏ nhất ra
+            for(DirectedEdge e :G.adj(v))// duyệt qua các cạnh đi ra từ đỉnh v vừa lấy ra
+            {
+                relax(e);// nới lỏng các cạnh kề với đỉnh v hay các cạnh đi ra từ v
+            }
+            
+        }  
+    
 
         // check optimality conditions
         assert check(G, s);
@@ -210,8 +219,12 @@ public class DijkstraSP {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
+        //truyền luồng đầu vào: tên file args[0]="tinyEWDn.txt
+        //args[0]="tinyEWDn.txt";
         In in = new In(args[0]);
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
+        
+        //truyền đỉnh nguồn
         int s = Integer.parseInt(args[1]);
 
         // compute shortest paths

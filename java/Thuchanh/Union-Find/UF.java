@@ -129,7 +129,9 @@ public class UF {
         validate(p);
    
      // path compression by halving
-        
+        if(parent[p] == p ) return p;
+            parent[p] = find(parent[p]);
+        return parent[p];
     }
 
     /**
@@ -171,7 +173,15 @@ public class UF {
 
         // make root of smaller rank point to root of larger rank ....... 
        // Bo sung code o day ......
-
+        if(rank[rootP] >= rank[rootQ])
+        {
+            parent[rootQ]=rootP;
+            rank[rootP]+= rank[rootQ] + 1;
+        }
+        else{
+            parent[rootP] = rootQ;
+            rank[rootQ] += rank[rootP] +1;
+        }
 
         count--;
     }

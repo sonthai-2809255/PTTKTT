@@ -1,0 +1,37 @@
+#BlueJ class context
+comment0.target=Student
+comment0.text=\r\n\ L\u1EDBp\ {@code\ Student}\ l\u00E0\ m\u1ED9t\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ b\u1EA5t\ bi\u1EBFn\ \u0111\u1EC3\ m\u00F4\ t\u1EA3\ th\u00F4ng\ tin\ sinh\ vi\u00EAn\r\n\ \r\n\ <p>\r\n\ \u0110\u1EC3\ bi\u1EBFt\ th\u00EAm\ t\u00E0i\ li\u1EC7u,\ xem\ th\u00EAm\ t\u1EA1i\r\n\ <a\ href\="https\://algs4.cs.princeton.edu/12oop">Section\ 1.2</a>\ c\u1EE7a\ s\u00E1ch\r\n\ <i>Algorithms,\ 4th\ Edition</i>\ b\u1EDFi\ Robert\ Sedgewick\ v\u00E0\ Kevin\ Wayne.\r\n\r\n\ @author\ Robert\ Sedgewick\r\n\ @author\ Kevin\ Wayne\r\n
+comment1.params=hodem\ ten\ ngaysinh\ diemTb
+comment1.target=Student(java.lang.String,\ java.lang.String,\ VnDate,\ double)
+comment1.text=\r\n\ Kh\u1EDFi\ t\u1EA1o\ m\u1ED9t\ sinh\ vi\u00EAn\ m\u1EDBi\ v\u1EDBi\ c\u00E1c\ tham\ s\u1ED1\ \u0111\u01B0\u1EE3c\ cung\ c\u1EA5p.\r\n\r\n\ @throws\ IllegalArgumentException\ n\u1EBFu\ {@code\ diemtb}\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l\u00E0\ {@code\ Double.NaN},\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {@code\ Double.POSITIVE_INFINITY},\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ho\u1EB7c\ {@code\ Double.NEGATIVE_INFINITY}\r\n
+comment10.params=
+comment10.target=int\ hashCode()
+comment10.text=\r\n\ Tr\u1EA3\ v\u1EC1\ m\u00E3\ b\u0103m\ c\u1EE7a\ sinh\ vi\u00EAn\ n\u00E0y.\r\n\r\n\ @return\ m\u00E3\ b\u0103m\ c\u1EE7a\ sinh\ vi\u00EAn\ n\u00E0y\r\n
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment11.text=\r\n\ Ki\u1EC3m\ th\u1EED\ \u0111\u01A1n\ v\u1ECB\ cho\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ {@code\ Student}.\r\n\r\n\ @param\ args\ tham\ s\u1ED1\ d\u00F2ng\ l\u1EC7nh\r\n
+comment2.params=student
+comment2.target=Student(java.lang.String)
+comment2.text=\r\n\ Kh\u1EDFi\ t\u1EA1o\ m\u1ED9t\ Sinh\ vi\u00EAn\ m\u1EDBi\ b\u1EB1ng\ c\u00E1ch\ ph\u00E2n\ t\u00EDch\ m\u1ED9t\ chu\u1ED7i\ theo\ \u0111\u1ECBnh\ d\u1EA1ng\ HODEM\r\n\ TEN\ NGAYSINH\ DIEMTB.\r\n\r\n\ @param\ student\ chu\u1ED7i\ c\u1EA7n\ ph\u00E2n\ t\u00EDch\r\n\ @throws\ IllegalArgumentException\ n\u1EBFu\ {@code\ amount}\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l\u00E0\ {@code\ Double.NaN},\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {@code\ Double.POSITIVE_INFINITY},\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ho\u1EB7c\ {@code\ Double.NEGATIVE_INFINITY}\r\n
+comment3.params=
+comment3.target=java.lang.String\ hodem()
+comment3.text=\r\n\ Tr\u1EA3\ v\u1EC1\ h\u1ECD\ \u0111\u1EC7m\ c\u1EE7a\ sinh\ vi\u00EAn\ .\r\n\r\n\ @return\ h\u1ECD\ \u0111\u1EC7m\ c\u1EE7a\ sinh\ vi\u00EAn.\r\n
+comment4.params=
+comment4.target=java.lang.String\ ten()
+comment4.text=tr\u1EA3\ v\u1EC1\ t\u00EAn\ c\u1EE7a\ sinh\ vi\u00EAn
+comment5.params=
+comment5.target=VnDate\ ngaysinh()
+comment5.text=\r\n\ Tr\u1EA3\ v\u1EC1\ ng\u00E0y\ th\u00E1ng\ n\u0103m\ sinh\ c\u1EE7a\ sinh\ vi\u00EAn\r\n\r\n\ @return\ ng\u00E0y\ th\u00E1ng\ n\u0103m\ sinh\ c\u1EE7a\ sinh\ vi\u00EAn\r\n
+comment6.params=
+comment6.target=double\ diemTb()
+comment6.text=\r\n\ tr\u1EA3\ v\u1EC1\ \u0111i\u1EC3m\ trung\ b\u00ECnh\ c\u1EE7a\ sinh\ vi\u00EAn\r\n\r\n\ @return\ \u0111i\u1EC3m\ trung\ b\u00ECnh\ c\u1EE7a\ sinh\ vi\u00EAn\r\n
+comment7.params=
+comment7.target=java.lang.String\ toString()
+comment7.text=\r\n\ Tr\u1EA3\ v\u1EC1\ chu\u1ED7i\ bi\u1EC3u\ di\u1EC5n\ th\u00F4ng\ tin\ sinh\ v\u00EAn.\r\n\r\n\ @return\ chu\u1ED7i\ bi\u1EC3u\ di\u1EC5n\ th\u00F4ng\ tin\ sinh\ vi\u00EAn\r\n
+comment8.params=that
+comment8.target=int\ compareTo(Student)
+comment8.text=\r\n\ So\ s\u00E1nh\ hai\ sinh\ vi\u00EAn\ theo\ diem\ trung\ b\u00ECnh.\r\n\r\n\ @param\ that\ sinh\ vi\u00EAn\ kh\u00E1c\r\n\ @return\ {\ m\u1ED9t\ s\u1ED1\ nguy\u00EAn\ \u00E2m,\ s\u1ED1\ 0,\ ho\u1EB7c\ m\u1ED9t\ s\u1ED1\ nguy\u00EAn\ d\u01B0\u01A1ng},\r\n\ \ \ \ \ \ \ \ \ t\u00F9y\ thu\u1ED9c\ v\u00E0o\ vi\u1EC7c\ \u0111i\u1EC3m\ c\u1EE7a\ sinh\ vi\u00EAn\ n\u00E0y\ {\ nh\u1ECF\ h\u01A1n,\ b\u1EB1ng,\ hay\ l\u1EDBn\r\n\ \ \ \ \ \ \ \ \ h\u01A1n\ }\r\n\ \ \ \ \ \ \ \ \ \u0111i\u1EC3m\ c\u1EE7a\ giao\ d\u1ECBch\ kh\u00E1c\r\n
+comment9.params=other
+comment9.target=boolean\ equals(java.lang.Object)
+comment9.text=\r\n\ So\ s\u00E1nh\ sinh\ vi\u00EAn\ n\u00E0y\ v\u1EDBi\ m\u1ED9t\ \u0111\u1ED1i\ t\u01B0\u1EE3ng\ kh\u00E1c.\r\n\r\n\ @param\ other\ sinh\ vi\u00EAn\ kh\u00E1c\r\n\ @return\ true\ n\u1EBFu\ sinh\ vi\u00EAn\ n\u00E0y\ b\u1EB1ng\ {@code\ other};\ false\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i\r\n
+numComments=12

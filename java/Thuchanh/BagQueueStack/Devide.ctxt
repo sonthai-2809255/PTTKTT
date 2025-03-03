@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Devide
+comment1.params=leftExpression\ rightExpression
+comment1.target=Devide(Expression,\ Expression)
+comment2.params=
+comment2.target=int\ interpret()
+numComments=3

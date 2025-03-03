@@ -40,7 +40,7 @@ import java.util.NoSuchElementException;
  *  when associating a value with a key that is already in the symbol table,
  *  the convention is to replace the old value with the new value.
  *  Unlike {@link java.util.Map}, this class uses the convention that
- *  values cannot be {@code null}—setting the
+ *  values cannot be {@code null} ï¿½ setting the
  *  value associated with a key to {@code null} is equivalent to deleting the key
  *  from the symbol table.
  *  <p>
@@ -137,9 +137,16 @@ public class BST<Key extends Comparable<Key>, Value> {
         if (key == null) throw new IllegalArgumentException("calls get() with a null key");
         if (x == null) return null;
         int cmp = key.compareTo(x.key);
-
-	// Lenh if ....
-
+        
+    // Lenh if ....
+    
+        if(cmp > 0){
+            return get(x.right,key);
+        }
+        else if(cmp < 0){
+            return get(x.left, key);
+        }
+        else return x.val;
     }
 
     /**
@@ -167,9 +174,15 @@ public class BST<Key extends Comparable<Key>, Value> {
         int cmp = key.compareTo(x.key);
  
        // Lenh if  .....
- 
+        if(cmp > 0){
+            x.right = put(x.right, key, val);// cap nhat cay con ben phai
+        }
+        else if(cmp < 0){
+            x.left = put(x.left, key, val);// cap nhat cay con ben trai
+        }
+        else x.val=val;
        // Cap nhat size 
- 
+         x.size = size(x.left) + size(x.right) + 1;
         return x;
     }
 
@@ -346,7 +359,7 @@ public class BST<Key extends Comparable<Key>, Value> {
      * @param  k the order statistic
      * @return the {@code k}th smallest key in the symbol table
      * @throws IllegalArgumentException unless {@code k} is between 0 and
-     *        <em>n</em>–1
+     *        <em>n</em>ï¿½1
      */
     public Key select(int k) {
         if (k < 0 || k >= size()) {

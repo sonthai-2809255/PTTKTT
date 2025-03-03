@@ -1,0 +1,6 @@
+dangquang,son,28/09/2005,nghean,29.0,9,8,7
+hoangduc,trong,26/03/2005,thainuyen,27.43,9,7,9
+buiminh,thuong,14/06/2005,hoabinh,24.34,8,8,8
+dovan,an,12/02/2004,thaibinh,28.90,8,8,9
+dangquang,minh,23/03/2005,nghean,28,9,9,9
+nguyenba, nam ,24/04/2005, thaibinh,27,9,9,9

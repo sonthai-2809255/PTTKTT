@@ -1,0 +1,180 @@
+ 
+FILE 1
+public interface Expression {
+    public int interpret();
+}
+
+ 
+FILE2
+import java.util.Stack;
+public class ComplexExpression implements Expression{
+    private String[] tokenArray;
+    
+        public ComplexExpression(String complexExpression){
+            tokenArray = complexExpression.split("\\s+");
+        }
+        
+        public static boolean isOperator(String s) {
+            if ((s.compareTo("+")==0) || (s.compareTo("-")==0) || (s.compareTo("*")==0))
+                return true;
+            else
+                return false;
+        }
+    
+    public static Expression getOperator(String s, Expression left,    Expression right) {
+        switch (s) {
+        case "+":
+            return new Add(left, right);
+        case "-":
+            return new Substract(left, right);
+        case "*":
+            return new Product(left, right);
+        }
+        return null;
+    }
+    
+    public int interpret() {
+        Stack<Expression> stack = new Stack<>();    
+        for (String s : tokenArray) {
+            if (isOperator(s)) {
+                Expression rightExpression = stack.pop();
+                Expression leftExpression = stack.pop();
+                Expression operator = getOperator(s, leftExpression,rightExpression);
+                int result = operator.interpret();
+                stack.push(new Number(result));
+            } 
+            else {
+                if (s.compareTo("") == 0) continue; 
+                Expression i = new Number(Integer.parseInt(s));
+                stack.push(i);
+            }
+        }
+        return stack.pop().interpret();
+    }
+}
+
+ 
+FILE 3
+public class Product implements Expression{
+
+    private final Expression leftExpression;
+    private final Expression rightExpression;
+
+    public Product(Expression leftExpression,Expression rightExpression ){
+        this.leftExpression = leftExpression;
+        this.rightExpression = rightExpression;
+    }
+    @Override
+    public int interpret() {
+        return leftExpression.interpret() * rightExpression.interpret();
+    }
+}
+
+ 
+FILE 4
+public class Number implements Expression{
+
+    private final int n;
+    
+    public Number(int n){
+        this.n = n;
+    }
+    @Override
+    public int interpret() {
+        return n;
+    }
+
+}
+
+FILE 5
+import java.util.Stack;
+
+public class TestComplexExpression {
+
+    public static void main(String[] args) {
+
+        String tokenString = "7 3 + 5 *";
+        ComplexExpression suffixExp = new ComplexExpression(tokenString);
+        int result = suffixExp.interpret();
+        System.out.println("Ket qua tinh " +tokenString + " la: " + result);
+        }
+}
+
+ 
+FILE 6
+public class Add implements Expression{
+    
+    private final Expression leftExpression;
+    private final Expression rightExpression;
+
+    public Add(Expression leftExpression,Expression rightExpression ){
+        this.leftExpression = leftExpression;
+        this.rightExpression = rightExpression;
+    }
+    @Override
+    public int interpret() {
+        return leftExpression.interpret() + rightExpression.interpret();
+    }
+
+}
+
+
+ 
+FILE 7
+public class Substract implements Expression{
+    
+    private final Expression leftExpression;
+    private final Expression rightExpression;
+
+    public Substract(Expression leftExpression,Expression rightExpression ){
+        this.leftExpression = leftExpression;
+        this.rightExpression = rightExpression;
+    }
+    @Override
+    public int interpret() {
+        return leftExpression.interpret() - rightExpression.interpret();
+    }
+
+}
+
+
+FILE 8
+
+
+import java.io.*;
+public class Evaluate
+{
+ public static void main(String[] args) throws IOException
+ {
+     System.setIn(new FileInputStream(new File("expression.txt")));
+     Stack<String> ops = new Stack<String>();
+     Stack<Double> vals = new Stack<Double>();
+     while (!StdIn.isEmpty())
+         { // Read token, push if operator.
+             String s = StdIn.readString();
+             if (s.equals("(")) ;
+             else if (s.equals("+")) ops.push(s);
+             else if (s.equals("-")) ops.push(s);
+             else if (s.equals("*")) ops.push(s);
+             else if (s.equals("/")) ops.push(s);
+    // bo sung khai can bac hai sqrt    ........
+             else if (s.equals(")"))
+             { // Pop, evaluate, and push result if token is ")".
+                 String op = ops.pop();
+                 double v = vals.pop();
+                 if (op.equals("+")) v = vals.pop() + v;
+                 else if (op.equals("-")) v = vals.pop() - v;
+                 else if (op.equals("*")) v = vals.pop() * v;
+                 else if (op.equals("/")) v = vals.pop() / v;
+                 
+                 // Bo sung phep khai can  ......    
+                 
+                vals.push(v);
+             } // Token not operator or paren: push double value.
+             else vals.push(Double.parseDouble(s));
+         }
+         StdOut.println(vals.pop());
+     }
+}
+
+

@@ -8,25 +8,27 @@ public class ComplexExpression implements Expression{
         }
         
         public static boolean isOperator(String s) {
-    		if ((s.compareTo("+")==0) || (s.compareTo("-")==0) || (s.compareTo("*")==0))
-    			return true;
-    		else
-    			return false;
-    	}
-	
-	public static Expression getOperator(String s, Expression left,	Expression right) {
-		switch (s) {
-		case "+":
-			return new Add(left, right);
-		case "-":
-			return new Substract(left, right);
-		case "*":
-			return new Product(left, right);
-		}
-		return null;
-	}
+            if ((s.compareTo("+")==0) || (s.compareTo("-")==0) || (s.compareTo("*")==0)||(s.compareTo("/")==0))
+                return true;
+            else
+                return false;
+        }
     
-	public int interpret() {
+    public static Expression getOperator(String s, Expression left,    Expression right) {
+        switch (s) {
+        case "+":
+            return new Add(left, right);
+        case "-":
+            return new Substract(left, right);
+        case "*":
+            return new Product(left, right);
+        case "/":
+            return new Devide(left, right);
+        }
+        return null;
+    }
+    
+    public int interpret() {
         Stack<Expression> stack = new Stack<>();    
         for (String s : tokenArray) {
             if (isOperator(s)) {

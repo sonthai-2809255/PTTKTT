@@ -15,7 +15,7 @@ class ActivitySelection
     {
     int i, j;
       
-    System.out.print("Following activities are selected : n");
+    System.out.print("Following activities are selected : n ");
       
     // The first activity always gets selected
     i = 0;

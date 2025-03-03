@@ -64,7 +64,7 @@ public class BinarySearch {
      * @param args the command-line arguments
      */
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream(new File("largeT.txt")));
+        System.setIn(new FileInputStream(new File("tinyT.txt")));
         //System.setIn(new FileInputStream(new File("tinyT.txt")));
         //System.setOut(new PrintStream("blacklist.txt"));
         // read the integers from a file

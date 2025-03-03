@@ -176,10 +176,15 @@ public class ClosestPair {
         int i = lo, j = mid+1;
 
         for (int k = lo; k <= hi; k++) {
-	
-     // Bo sung vong for trong merge  de tron lai ......
     
-        }
+     // Bo sung vong for trong merge  de tron lai ......
+             if (i > mid) { // Nếu đã duyệt hết nửa trái
+            a[k] = aux[j++];
+        } else if (j > hi) { // Nếu đã duyệt hết nửa phải
+            a[k] = aux[i++];
+        } else if (aux[i] > aux[j]) { // Nếu phần tử ở nửa trái lớn hơn nửa phải
+            a[k] = aux[j++];
+        } else           a[k] = aux[i++];
 
     }
 

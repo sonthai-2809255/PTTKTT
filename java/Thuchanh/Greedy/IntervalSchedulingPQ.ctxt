@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IntervalSchedulingPQ
+comment1.params=start\ finish\ profit
+comment1.target=Job02(int,\ int,\ int)
+comment2.params=jobs
+comment2.target=java.util.List\ listJobvalid(java.util.List)
+comment3.params=jobs
+comment3.target=void\ display(java.util.List)
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+numComments=5

@@ -86,7 +86,7 @@ public class KruskalMST {
         while (!pq.isEmpty() && mst.size() < G.V() - 1) {
             
               // Xoa e la phan tu min cua pq ......
-            
+            Edge e= pq.delMin();
             int v = e.either();
             int w = e.other(v);
             if (!uf.connected(v, w)) { // v-w does not create a cycle
@@ -186,13 +186,15 @@ public class KruskalMST {
         In in = new In(args[0]);
         EdgeWeightedGraph G = new EdgeWeightedGraph(in);
         KruskalMST mst = new KruskalMST(G);
+        StdOut.println("Edge in Graph");
         for (Edge e : G.edges()) {
             StdOut.println(e);
         }    
+        StdOut.println("Edge in MST");
         for (Edge e : mst.edges()) {
             StdOut.println(e);
         }
-        StdOut.printf("%.5f\n", mst.weight());
+        StdOut.printf("total weight = %.5f\n", mst.weight());
     }
 
 }

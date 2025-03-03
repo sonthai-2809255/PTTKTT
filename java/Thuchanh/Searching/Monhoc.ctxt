@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Monhoc
+comment1.params=tenmon\ tinchi\ kythu
+comment1.target=Monhoc(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ tenmon()
+comment3.params=
+comment3.target=int\ tinchi()
+comment4.params=
+comment4.target=int\ kythu()
+comment5.params=that
+comment5.target=int\ compareTo(Monhoc)
+comment6.params=other
+comment6.target=boolean\ equals(java.lang.Object)
+comment7.params=
+comment7.target=int\ hashCode()
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=args
+comment9.target=void\ main(java.lang.String[])
+numComments=10

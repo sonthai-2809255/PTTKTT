@@ -44,7 +44,13 @@ public class Inversions {
         for (int k = lo; k <= hi; k++) {
 
         // Bo sung noi dung vong for de tron lai .....
-
+             if      (i > mid)                a[k] = aux[j++];
+             else if (j > hi)                 a[k] = aux[i++];
+             else if (a[i] > a[j]) { 
+                    a[k] = aux[j++]; 
+                    inversions += (mid - i + 1);  // Đếm số lượng inversions
+            }
+        else                             a[k] = aux[i++];
         }
         return inversions;
     }

@@ -95,7 +95,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     /**
      * Returns the angle of this point in polar coordinates.
-     * @return the angle (in radians) of this point in polar coordiantes (between –&pi; and &pi;)
+     * @return the angle (in radians) of this point in polar coordiantes (between ï¿½&pi; and &pi;)
      */
     public double theta() {
         return Math.atan2(y, x);
@@ -103,7 +103,7 @@ public final class Point2D implements Comparable<Point2D> {
 
     /**
      * Returns the angle between this point and that point.
-     * @return the angle in radians (between –&pi; and &pi;) between this point and that point (0 if equal)
+     * @return the angle in radians (between &pi; and &pi;) between this point and that point (0 if equal)
      */
     private double angleTo(Point2D that) {
         double dx = that.x - this.x;
@@ -188,7 +188,7 @@ public final class Point2D implements Comparable<Point2D> {
     }
 
     /**
-     * Compares two points by atan2() angle (between –&pi; and &pi;) with respect to this point.
+     * Compares two points by atan2() angle (between ï¿½&pi; and &pi;) with respect to this point.
      *
      * @return the comparator
      */
