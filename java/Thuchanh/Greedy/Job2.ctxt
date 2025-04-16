@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Job2
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Job2\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=s\ f\ p
+comment1.target=Job2(int,\ int,\ int)
+comment2.params=that
+comment2.target=int\ compareTo(Job2)
+comment3.params=
+comment3.target=double\ getStart()
+comment4.params=
+comment4.target=double\ getFinish()
+comment5.params=
+comment5.target=double\ getProfit()
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Lecture
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Lecture\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=s\ f\ p
+comment1.target=Lecture(int,\ int,\ int)
+comment2.params=that
+comment2.target=int\ compareTo(Lecture)
+comment3.params=
+comment3.target=double\ start()
+comment4.params=
+comment4.target=double\ finish()
+comment5.params=
+comment5.target=double\ profit()
+comment6.params=
+comment6.target=java.lang.String\ toString()
+numComments=7

@@ -83,11 +83,15 @@ public class Queue<Item> implements Iterable<Item> {
         last = new Node<Item>();
 
         // Dua phan tu moi vao cuoi .....
-   
+        last.next= null;
+        last.item= item;
+        if(isEmpty()) first= last;
+        else oldlast.next = last;
         n++;
     }
 
     /**
+     * Bổ Sung
      * Removes and returns the item on this queue that was least recently added.
      *
      * @return the item on this queue that was least recently added
@@ -95,11 +99,11 @@ public class Queue<Item> implements Iterable<Item> {
      */
     public Item dequeue() {
         if (isEmpty()) throw new NoSuchElementException("Queue underflow");
-
         // Lay phan tu dau ra ....
-  
+        Item item = first.item;
+        first = first.next;
         n--;
-        if (isEmpty()) last = null;   // to avoid loitering
+        if (isEmpty()) last = null; 
         return item;
     }
 
@@ -152,15 +156,14 @@ public class Queue<Item> implements Iterable<Item> {
      * @param args the command-line arguments
      */
     public static void main(String[] args) throws IOException {
-        System.setIn(new FileInputStream(new File("tobe.txt")));
+        System.setIn(new FileInputStream("tobe.txt"));
         Queue<String> queue = new Queue<String>();
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-"))
                 queue.enqueue(item);
-            else if (!queue.isEmpty())
-                StdOut.print(queue.dequeue() + " ");
         }
         StdOut.println("(" + queue.size() + " left on queue)");
+        while(!queue.isEmpty()) StdOut.println(queue.dequeue());
     }
 }

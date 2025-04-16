@@ -217,7 +217,7 @@ public class EdgeWeightedDigraph {
     public Iterable<DirectedEdge> edges() {
         Bag<DirectedEdge> list = new Bag<DirectedEdge>();
         for (int v = 0; v < V; v++) {
-            for (DirectedEdge e : adj(v)) {
+            for (DirectedEdge e : adj[v]) {
                 list.add(e);
             }
         }

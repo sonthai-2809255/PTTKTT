@@ -121,6 +121,7 @@ public class EdgeWeightedDirectedCycle {
             DirectedEdge first = null, last = null;
             for (DirectedEdge e : cycle()) {
                 if (first == null) first = e;
+                
                 if (last != null) {
                     if (last.to() != e.from()) {
                         System.err.printf("cycle edges %s and %s not incident\n", last, e);

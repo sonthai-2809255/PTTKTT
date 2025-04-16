@@ -125,12 +125,14 @@ public class UF {
      * @return the component identifier for the component containing site {@code p}
      * @throws IllegalArgumentException unless {@code 0 <= p < n}
      */
-    public int find(int p) {
+    public int find(int p) // đi tìm thằng cha
+    { 
         validate(p);
    
      // path compression by halving
-        if(parent[p] == p ) return p;
-            parent[p] = find(parent[p]);
+        if(parent[p] == p ) return p; // nếu cha là chính nó thì trả về 
+        parent[p] = find(parent[p]);// tìm tiếp
+        
         return parent[p];
     }
 
@@ -154,7 +156,7 @@ public class UF {
      *         both {@code 0 <= p < n} and {@code 0 <= q < n}
      */
     public boolean connected(int p, int q) {
-        return find(p) == find(q);
+        return find(p) == find(q); // cùng cha thì đã kết nối
     }
   
     /**
@@ -166,7 +168,7 @@ public class UF {
      * @throws IllegalArgumentException unless
      *         both {@code 0 <= p < n} and {@code 0 <= q < n}
      */
-    public void union(int p, int q) {
+    public void union(int p, int q) { // kết nối
         int rootP = find(p);
         int rootQ = find(q);
         if (rootP == rootQ) return;

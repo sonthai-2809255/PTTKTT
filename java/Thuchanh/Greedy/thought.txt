@@ -1,0 +1,3 @@
+IntervalScheduling: một lần thực hiện tối đa bao nhiêu công việc?
+IntervalPatitioning: số lần tối thiểu để thực hoàn thành một đống công việc-> bài toán xếp lịch
+    theo phòng học

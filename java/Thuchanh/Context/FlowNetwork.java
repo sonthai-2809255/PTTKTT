@@ -38,13 +38,14 @@ public class FlowNetwork {
 
     private final int V;
     private int E;
-    private Bag<FlowEdge>[] adj;
+    private Bag<FlowEdge>[] adj; // cạnh luồng(vừa đến vừa đi)
     
     /**
      * Initializes an empty flow network with {@code V} vertices and 0 edges.
      * @param V the number of vertices
      * @throws IllegalArgumentException if {@code V < 0}
      */
+    
     public FlowNetwork(int V) {
         if (V < 0) throw new IllegalArgumentException("Number of vertices in a Graph must be nonnegative");
         this.V = V;

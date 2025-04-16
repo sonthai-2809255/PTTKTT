@@ -186,7 +186,7 @@ public class Student implements Comparable<Student> {
 
         @Override
         public int compare(Student v, Student w) {
-            return Double.compare(v.diemTb, w.diemTb);
+            return Double.compare(w.diemTb, v.diemTb);
         }
     }
 
@@ -203,12 +203,6 @@ public class Student implements Comparable<Student> {
         a[3] = new Student("do van an        12/2/2004  28.90");
 
         StdOut.println("Chưa sắp xếp");
-        for (int i = 0; i < a.length; i++)
-            StdOut.println(a[i]);
-        StdOut.println();
-
-        StdOut.println("Sắp xếp theo CompareTo");
-        Arrays.sort(a);
         for (int i = 0; i < a.length; i++)
             StdOut.println(a[i]);
         StdOut.println();
@@ -231,7 +225,7 @@ public class Student implements Comparable<Student> {
             StdOut.println(a[i]);
         StdOut.println();
 
-        StdOut.println("Sắp xếp theo điểm trung bình");
+        StdOut.println("Sắp xếp theo điểm trung bình(giảm  dần)");
         Arrays.sort(a, new Student.diemTbOrder());
         for (int i = 0; i < a.length; i++)
             StdOut.println(a[i]);

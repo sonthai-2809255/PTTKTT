@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=EdgeWeightedDirectedCycle_T
+comment0.text=\r\n\ \ L\u1EDBp\ {@code\ EdgeWeightedDirectedCycle}\ \u0111\u1EA1i\ di\u1EC7n\ cho\ m\u1ED9t\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ \u0111\u1EC3\ \r\n\ \ x\u00E1c\ \u0111\u1ECBnh\ xem\ m\u1ED9t\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ c\u00F3\ ch\u1EE9a\ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ hay\ kh\u00F4ng.\r\n\ \ Ph\u01B0\u01A1ng\ th\u1EE9c\ <em>hasCycle</em>\ x\u00E1c\ \u0111\u1ECBnh\ xem\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ c\u00F3\ ch\u1EE9a\r\n\ \ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ hay\ kh\u00F4ng\ v\u00E0,\ n\u1EBFu\ c\u00F3,\ ph\u01B0\u01A1ng\ th\u1EE9c\ <em>cycle</em>\r\n\ \ s\u1EBD\ tr\u1EA3\ v\u1EC1\ m\u1ED9t\ chu\ tr\u00ECnh\ nh\u01B0\ v\u1EADy.\r\n\ \ <p>\r\n\ \ C\u00E0i\ \u0111\u1EB7t\ n\u00E0y\ s\u1EED\ d\u1EE5ng\ t\u00ECm\ ki\u1EBFm\ theo\ chi\u1EC1u\ s\u00E2u\ (DFS).\r\n\ \ Constructor\ m\u1EA5t\ th\u1EDDi\ gian\ t\u1EF7\ l\u1EC7\ v\u1EDBi\ <em>V</em>\ +\ <em>E</em>\r\n\ \ (trong\ tr\u01B0\u1EDDng\ h\u1EE3p\ x\u1EA5u\ nh\u1EA5t),\r\n\ \ trong\ \u0111\u00F3\ <em>V</em>\ l\u00E0\ s\u1ED1\ \u0111\u1EC9nh\ v\u00E0\ <em>E</em>\ l\u00E0\ s\u1ED1\ c\u1EA1nh.\r\n\ \ Sau\ \u0111\u00F3,\ ph\u01B0\u01A1ng\ th\u1EE9c\ <em>hasCycle</em>\ m\u1EA5t\ th\u1EDDi\ gian\ h\u1EB1ng\ s\u1ED1;\r\n\ \ ph\u01B0\u01A1ng\ th\u1EE9c\ <em>cycle</em>\ m\u1EA5t\ th\u1EDDi\ gian\ t\u1EF7\ l\u1EC7\r\n\ \ v\u1EDBi\ \u0111\u1ED9\ d\u00E0i\ c\u1EE7a\ chu\ tr\u00ECnh.\r\n\ \ <p>\r\n\ \ Xem\ {@link\ Topological}\ \u0111\u1EC3\ t\u00EDnh\ th\u1EE9\ t\u1EF1\ t\u00F4-p\u00F4\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\r\n\ \ kh\u00F4ng\ c\u00F3\ chu\ tr\u00ECnh.\r\n\ \ <p>\r\n\ \ \u0110\u1EC3\ bi\u1EBFt\ th\u00EAm\ t\u00E0i\ li\u1EC7u,\ \ \ \r\n\ \ xem\ <a\ href\="https\://algs4.cs.princeton.edu/44sp">M\u1EE5c\ 4.4</a>\ c\u1EE7a\ \ \ \r\n\ \ <i>Algorithms,\ 4th\ Edition</i>\ b\u1EDFi\ Robert\ Sedgewick\ v\u00E0\ Kevin\ Wayne.\ \r\n\r\n\ \ @author\ Robert\ Sedgewick\r\n\ \ @author\ Kevin\ Wayne\r\n
+comment1.params=G
+comment1.target=EdgeWeightedDirectedCycle_T(EdgeWeightedDigraph_T)
+comment1.text=v\u1EDBi\ DirectedEdge\ e\:\ w->v
+comment2.params=G\ v
+comment2.target=void\ dfs(EdgeWeightedDigraph_T,\ int)
+comment3.params=
+comment3.target=boolean\ hasCycle()
+comment3.text=\r\n\ \u0110\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ kh\u00F4ng?\r\n\ @return\ {@code\ true}\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng,\r\n\ {@code\ false}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i\r\n
+comment4.params=
+comment4.target=java.lang.Iterable\ cycle()
+comment4.text=\r\n\ Tr\u1EA3\ v\u1EC1\ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng,\r\n\ v\u00E0\ {@code\ null}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i.\r\n\ @return\ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ (d\u01B0\u1EDBi\ d\u1EA1ng\ iterable)\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng,\r\n\ \ \ \ v\u00E0\ {@code\ null}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i\r\n
+comment5.params=
+comment5.target=boolean\ check()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+comment6.text=\r\n\ Unit\ tests\ cho\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ {@code\ EdgeWeightedDirectedCycle}.\r\n\r\n\ @param\ args\ c\u00E1c\ \u0111\u1ED1i\ s\u1ED1\ d\u00F2ng\ l\u1EC7nh\r\n
+numComments=7

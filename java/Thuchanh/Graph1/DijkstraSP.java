@@ -92,7 +92,6 @@ public class DijkstraSP {
             {
                 relax(e);// nới lỏng các cạnh kề với đỉnh v hay các cạnh đi ra từ v
             }
-            
         }  
     
 

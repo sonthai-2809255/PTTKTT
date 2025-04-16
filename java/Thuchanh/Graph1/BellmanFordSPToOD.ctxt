@@ -1,0 +1,33 @@
+#BlueJ class context
+comment0.target=BellmanFordSPToOD
+comment0.text=\r\n\ \ L\u1EDBp\ {@code\ BellmanFordSPToOD}\ \u0111\u1EA1i\ di\u1EC7n\ cho\ m\u1ED9t\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ \u0111\u1EC3\ gi\u1EA3i\ quy\u1EBFt\ b\u00E0i\ to\u00E1n\r\n\ \ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ m\u1ED9i\ \u0111\u1EC9nh\ trong\ \u0111\u1ED3\ th\u1ECB\ \u0111\u1EBFn\ \u0111\u1EC9nh\ \u0111\u00EDch\ duy\ nh\u1EA5t\ trong\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ m\u00E0\ kh\u00F4ng\ c\u00F3\r\n\ \ chu\ tr\u00ECnh\ \u00E2m.\ Tr\u1ECDng\ s\u1ED1\ c\u1EE7a\ c\u00E1c\ c\u1EA1nh\ c\u00F3\ th\u1EC3\ l\u00E0\ d\u01B0\u01A1ng,\ \u00E2m\ ho\u1EB7c\ b\u1EB1ng\ kh\u00F4ng.\r\n\ \ L\u1EDBp\ n\u00E0y\ t\u00ECm\ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ \ m\u1ECDi\ \u0111\u1EC9nh\ kh\u00E1c\ \u0111\u1EBFn\ s\ ho\u1EB7c\ m\u1ED9t\ chu\ tr\u00ECnh\r\n\ \ \u00E2m\ .\r\n\ \ \r\n
+comment1.params=G\ s
+comment1.target=BellmanFordSPToOD(EdgeWeightedDigraph_T,\ int)
+comment1.text=\r\n\ T\u00EDnh\ to\u00E1n\ c\u00E2y\ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ m\u1ECDi\ \u0111\u1EC9nh\ kh\u00E1c\ \u0111\u1EBFn\ {@code\ s}\r\n\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ {@code\ G}.\r\n\ @param\ G\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ kh\u00F4ng\ c\u00F3\ chu\ tr\u00ECnh\ v\u1EDBi\ t\u00FAi\ c\u1EA1nh\ v\u00E0o\r\n\ @param\ s\ \u0111\u1EC9nh\ \u0111\u00EDch\r\n\ @throws\ IllegalArgumentException\ n\u1EBFu\ {@code\ 0\ <\=\ s\ <\ V}\ kh\u00F4ng\ th\u1ECFa\ m\u00E3n\r\n
+comment10.params=v
+comment10.target=void\ validateVertex(int)
+comment11.params=args
+comment11.target=void\ main(java.lang.String[])
+comment11.text=\r\n\ Ki\u1EC3m\ th\u1EED\ \u0111\u01A1n\ v\u1ECB\ cho\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ {@code\ BellmanFordSPToOD}.\r\n\r\n\ @param\ args\ c\u00E1c\ \u0111\u1ED1i\ s\u1ED1\ d\u00F2ng\ l\u1EC7nh\r\n
+comment2.params=G\ v
+comment2.target=void\ relax(EdgeWeightedDigraph_T,\ int)
+comment3.params=
+comment3.target=boolean\ hasNegativeCycle()
+comment3.text=\r\n\ C\u00F3\ chu\ tr\u00ECnh\ \u00E2m\ n\u00E0o\ \ kh\u00F4ng?\r\n\ \r\n
+comment4.params=
+comment4.target=java.lang.Iterable\ negativeCycle()
+comment4.text=\r\n\ Tr\u1EA3\ v\u1EC1\ m\u1ED9t\ chu\ tr\u00ECnh\ \u00E2m\ c\u00F3\ t\u1EEB\ \u0111\u00EDch,\ ho\u1EB7c\ {@code\ null}\r\n\ n\u1EBFu\ kh\u00F4ng\ c\u00F3\ chu\ tr\u00ECnh\ nh\u01B0\ v\u1EADy.\r\n\ @return\ m\u1ED9t\ chu\ tr\u00ECnh\ \u00E2m\ d\u01B0\u1EDBi\ d\u1EA1ng\ m\u1ED9t\ iterable\ c\u1EE7a\ c\u00E1c\ c\u1EA1nh,\ v\u00E0\ {@code\ null}\ n\u1EBFu\ kh\u00F4ng\ c\u00F3\ chu\ tr\u00ECnh\ nh\u01B0\ v\u1EADy\r\n
+comment5.params=
+comment5.target=void\ findNegativeCycle()
+comment6.params=v
+comment6.target=double\ distTo(int)
+comment6.text=\r\n\ Tr\u1EA3\ v\u1EC1\ \u0111\u1ED9\ d\u00E0i\ c\u1EE7a\ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ \u0111\u1EC9nh\ {@code\ v}\ \u0111\u1EBFn\ \u0111\u1EC9nh\ \u0111\u00EDch\r\n\ @param\ \ v\ \u0111\u1EC9nh\ ngu\u1ED3n\r\n\ @return\ \u0111\u1ED9\ d\u00E0i\ c\u1EE7a\ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ \u0111\u1EC9nh\ {@code\ v}\ \u0111\u1EBFn\ \u0111\u00EDch;\r\n\ \ \ \ \ \ \ \ \ {@code\ Double.POSITIVE_INFINITY}\ n\u1EBFu\ kh\u00F4ng\ c\u00F3\ \u0111\u01B0\u1EDDng\ \u0111i\ nh\u01B0\ v\u1EADy\r\n\ @throws\ UnsupportedOperationException\ n\u1EBFu\ c\u00F3\ chu\ tr\u00ECnh\ chi\ ph\u00ED\ \u00E2m\ \r\n\ \ \ \ \ \ \ \ \r\n\ @throws\ IllegalArgumentException\ n\u1EBFu\ {@code\ 0\ <\=\ \u0111\u00EDch\ <\ V}\ kh\u00F4ng\ th\u1ECFa\ m\u00E3n\r\n
+comment7.params=v
+comment7.target=boolean\ hasPathTo(int)
+comment7.text=\r\n\ C\u00F3\ \u0111\u01B0\u1EDDng\ \u0111i\ t\u1EEB\ \u0111\u1EC9nh\ ngu\u1ED3n\ \ {@code\ v}\ \u0111\u1EBFn\ \u0111\u00EDch\ kh\u00F4ng?\r\n\ @param\ \ v\ \u0111\u1EC9nh\ ngu\u1ED3n\r\n\ @return\ {@code\ true}\ n\u1EBFu\ c\u00F3\ \u0111\u01B0\u1EDDng\ \u0111i\ t\u1EEB\ \u0111\u1EC9nh\ ngu\u1ED3n\r\n\ \ \ \ \ \ \ \ \ {@code\ v}\ \u0111\u1EBFn\ \u0111\u1EC9nh\ \u0111\u00EDch,\ v\u00E0\ {@code\ false}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i\r\n\ @throws\ IllegalArgumentException\ n\u1EBFu\ {@code\ 0\ <\=\ \u0111\u00EDch\ <\ V}\ kh\u00F4ng\ th\u1ECFa\ m\u00E3n\r\n
+comment8.params=v
+comment8.target=java.lang.Iterable\ pathTo(int)
+comment8.text=\r\n\ Tr\u1EA3\ v\u1EC1\ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ \u0111\u1EC9nh\ ngu\u1ED3n\ {@code\ v}\ \u0111\u1EBFn\ \u0111\u1EC9nh\ {@code\ s}.\r\n\ @param\ \ s\ \u0111\u1EC9nh\ \u0111\u00EDch\r\n\ @return\ \u0111\u01B0\u1EDDng\ \u0111i\ ng\u1EAFn\ nh\u1EA5t\ t\u1EEB\ \u0111\u1EC9nh\ ngu\u1ED3n\ {@code\ v}\ \u0111\u1EBFn\ \u0111\u1EC9nh\ {@code\ s}\r\n\ \ \ \ \ \ \ \ \ d\u01B0\u1EDBi\ d\u1EA1ng\ m\u1ED9t\ iterable\ c\u1EE7a\ c\u00E1c\ c\u1EA1nh,\ v\u00E0\ {@code\ null}\ n\u1EBFu\ kh\u00F4ng\ c\u00F3\ \u0111\u01B0\u1EDDng\ \u0111i\ nh\u01B0\ v\u1EADy\r\n\ @throws\ UnsupportedOperationException\ n\u1EBFu\ c\u00F3\ chu\ tr\u00ECnh\ chi\ ph\u00ED\ \u00E2m\ c\u00F3\ th\u1EC3\ \u0111\u1EBFn\ \u0111\u01B0\u1EE3c\r\n\ \ \ \ \ \ \ \ \ t\u1EEB\ \u0111\u1EC9nh\ ngu\u1ED3n\ {@code\ v}\r\n\ @throws\ IllegalArgumentException\ n\u1EBFu\ {@code\ 0\ <\=\ s\ <\ V}\ kh\u00F4ng\ th\u1ECFa\ m\u00E3n\r\n
+comment9.params=G\ s
+comment9.target=boolean\ check(EdgeWeightedDigraph_T,\ int)
+numComments=12

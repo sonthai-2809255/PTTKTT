@@ -23,6 +23,7 @@
 
  
 import java.io.*;
+import java.util.*;
 /**
  *  The {@code Quick3way} class provides static methods for sorting an
  *  array using quicksort with 3-way partitioning.
@@ -43,7 +44,8 @@ public class Quick3way {
      * @param a the array to be sorted
      */
     public static void sort(Comparable[] a) {
-        StdRandom.shuffle(a);
+       // StdRandom.shuffle(a);
+        Collections.shuffle(Arrays.asList(a));
         sort(a, 0, a.length - 1);
         assert isSorted(a);
     }

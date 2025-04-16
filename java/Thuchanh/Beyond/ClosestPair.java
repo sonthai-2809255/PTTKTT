@@ -182,12 +182,12 @@ public class ClosestPair {
             a[k] = aux[j++];
         } else if (j > hi) { // Nếu đã duyệt hết nửa phải
             a[k] = aux[i++];
-        } else if (aux[i] > aux[j]) { // Nếu phần tử ở nửa trái lớn hơn nửa phải
+        } else if (less(aux[j],aux[i])) { // Nếu phần tử ở nửa trái lớn hơn nửa phải
             a[k] = aux[j++];
         } else           a[k] = aux[i++];
 
     }
-
+}
 
 
    /**
@@ -199,6 +199,7 @@ public class ClosestPair {
      *
      * @param args the command-line arguments
      */
+    
     public static void main(String[] args) throws IOException {
         System.setIn(new FileInputStream(new File("rs1423.txt")));
         int n = StdIn.readInt();
