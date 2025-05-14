@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.io.File;
 
 /**
  * Write a description of class IntervalPartitioning here.
@@ -19,14 +20,18 @@ public class IntervalPartitioning
         }
     }
     
-    public void findLastRoomsNonConflictingLecture(Lecture[] lectures){
+    public void findLastRoomsNonConflictingLecture(In in){
         MinPQ<Lecture> pq = new MinPQ<>();
         
-        for(Lecture c : lectures)
-        {
-            pq.insert(c);
+        //read file
+        while(!in.isEmpty()){
+            double start = in.readDouble();
+            double finish = in.readDouble();
+            double profit = in.readDouble();
+            pq.insert(new Lecture(start,finish,profit));
         }
         
+        //solve
         while(!pq.isEmpty()){
             Lecture select = pq.delMin();
             boolean comparetible = false;
@@ -52,29 +57,24 @@ public class IntervalPartitioning
         }
     }
     
-    public List<Queue<Lecture>> getRooms(){return this.room;}
-    
-    public static void main(String args[]){
-        Lecture []lectures = new Lecture[]{new Lecture(0, 6, 60),
-                                     new Lecture(1, 4, 30),
-                                     new Lecture( 3, 5, 10 ),
-                                     new Lecture( 5, 7, 30 ),
-                                     new Lecture( 5, 9, 50 ),
-                                     new Lecture( 7, 8, 10 ),
-                                    new Lecture( 2, 4, 10 ),
-                                    new Lecture( 5, 8, 10 ),
-                                    new Lecture( 1, 8, 10 ),
-                                    new Lecture( 8, 12, 10 ),};
-        IntervalPartitioning IP = new IntervalPartitioning();
-        IP.findLastRoomsNonConflictingLecture(lectures);
-         int num = 1;
-        for(Queue<Lecture> room: IP.getRooms()){
-            StdOut.println("Room: " + num);
-            for(Lecture lecture : room){
+    public void display(){
+        int num = 1;
+        for(Queue<Lecture>  r: this.room){
+            StdOut.println("Room " + num);
+            for(Lecture lecture : r){
                 StdOut.println("   " + lecture);
             }
             num++;
         }
+    }
+    public List<Queue<Lecture>> getRooms(){return this.room;}
+    
+    public static void main(String args[]){
+       
+        In in = new In(new File("lecture.txt"));
+        IntervalPartitioning IP = new IntervalPartitioning();
+        IP.findLastRoomsNonConflictingLecture(in);
+        IP.display();
                                      
     }
 }

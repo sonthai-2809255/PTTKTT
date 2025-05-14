@@ -100,6 +100,7 @@ public class DijkstraSP {
     }
 
     // relax edge e and update pq if changed
+    //bản chất của relax là tìm đường đi có độ dài ngắn nhất từ nguồn đến e.to()
     private void relax(DirectedEdge e) {
         int v = e.from(), w = e.to();
         if (distTo[w] > distTo[v] + e.weight()) {
@@ -218,18 +219,16 @@ public class DijkstraSP {
      * @param args the command-line arguments
      */
     public static void main(String[] args) {
-        //truyền luồng đầu vào: tên file args[0]="tinyEWDn.txt
-        //args[0]="tinyEWDn.txt";
-        In in = new In(args[0]);
+        //args[0]="tinyEWD.txt";
+        In in = new In("tinyEWD.txt");
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
         
         //truyền đỉnh nguồn
-        int s = Integer.parseInt(args[1]);
+        int s = Integer.parseInt("0");
 
         // compute shortest paths
         DijkstraSP sp = new DijkstraSP(G, s);
-
-
+        
         // print shortest path
         for (int t = 0; t < G.V(); t++) {
             if (sp.hasPathTo(t)) {

@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.File;
+
 /**
  * Write a description of class IntervalScheduling here.
  *
@@ -11,13 +13,16 @@ public class IntervalScheduling
     
     public IntervalScheduling(){ jobs = new ArrayList<Job2>();}
     
-    public void findLastNonConflictingJob(List<Job2> array){
+    public void findLastNonConflictingJob(In in){
         MinPQ<Job2> pq= new MinPQ<Job2>();
-        
-        for(Job2 job: array){
-            pq.insert(job);
+        //read file
+        while(!in.isEmpty()){
+            double start = in.readDouble();
+            double finish = in.readDouble();
+            double profit = in.readDouble();
+            pq.insert( new Job2(start,finish,profit));
         }
-        
+        //solve
         double LastFinishTime = 0;
         
         while(!pq.isEmpty()){
@@ -30,20 +35,21 @@ public class IntervalScheduling
             
     }
     
+    public void display(){
+         for(Job2 c: this.jobs){
+            System.out.println(c.toString() );
+        }
+    }
+    
     public List<Job2> getJobs(){return this.jobs;}
     
         
     public static void main(String args[]){
-        List<Job2> jobs = Arrays.asList(new Job2(0, 6, 60),
-                                     new Job2(1, 4, 30),
-                                     new Job2( 3, 5, 10 ),
-                                     new Job2( 5, 7, 30 ),
-                                     new Job2( 5, 9, 50 ),
-                                     new Job2( 7, 8, 10 )   );
-        IntervalScheduling is= new IntervalScheduling();
-        is.findLastNonConflictingJob(jobs);
-         for(Job2 c: is.getJobs()){
-            System.out.println(c.toString() );
-        }
+        
+        In in = new In(new File("job2.txt"));
+        IntervalScheduling IS= new IntervalScheduling();
+        IS.findLastNonConflictingJob(in);
+        IS.display();
+        
     }
 }

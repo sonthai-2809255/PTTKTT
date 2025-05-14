@@ -6,6 +6,9 @@
  * @version (a version number or a date)
  */
 import java.io.File;
+import java.util.*;
+import java.util.ArrayList;
+
 public class FileFrequencyIndex
 {
     private ST <String, ST< File, Integer>> st ;
@@ -18,75 +21,54 @@ public class FileFrequencyIndex
         
     }
     
-    // Lớp hỗ trợ để lưu trữ file và số lần xuất hiện của từ
-    public static class FileFrequency implements Comparable<FileFrequency> {
-        File file;
-        int frequency;// số lần xuất hiện của từ khoá 
-
-        FileFrequency(File file, int frequency) {
-            this.file = file;
-            this.frequency = frequency;
-        }
-
-        @Override
-        public int compareTo(FileFrequency other) {
-            return Integer.compare(this.frequency, other.frequency);
-        }
-        
-        @Override
-        public String toString (){
-            return String.format(file +"    " + frequency);
-        }
-    }
     
-    public void checked(String word){
+    public void frequency(String word){
          StdOut.println(word);
+         List<FileFrequency> list = new ArrayList<>();
+
         if(!st.contains(word)) 
             {
                 StdOut.println("   not contains " + word);
+                return ;
             }
-        else{
-            ST<File,Integer> a= st.get(word);
-            MaxPQ<FileFrequency> pq = new MaxPQ<FileFrequency>();
-            for(File c : a.keys()){
-                pq.insert(new FileFrequency(c,a.get(c)));
-            }
-            for(FileFrequency c : pq ){
-                StdOut.println("   " + c);
-            }
+            
+        ST<File,Integer> a= st.get(word);
+            
+        for(File c : a.keys()){
+            list.add(new FileFrequency(c,a.get(c)));
+        }
+        Collections.sort(list);
+        for(FileFrequency c: list){
+            StdOut.println("  "+ c);
         }
     }
     
-    /**tạo dữ liệu với các file đầu vào đã chọn*/
-    public void create(String args[]){
-        st = Update(args);
-    }
-    
+
     /** phương thức bổ trợ */
-    private   ST Update(String args[]){
+    public void   create (String args[]){
         
-         ST <String, ST< File, Integer>> cp = st;
          StdOut.println("Indexing files");
         for(String filename : args){
             StdOut.println("    " + filename);
             //tao lai file
             File file= new File(filename);
             //truyen vao In
+            file.setReadable(true);
             In in= new In(file);
             while(!in.isEmpty()){
                 String word = in.readString();
-                if(!cp.contains(word)){
-                    cp.put(word, new ST<File,Integer>());
-                    cp.get(word).put(file,1);
+                if(!st.contains(word)){
+                    st.put(word, new ST<File,Integer>());
+                    st.get(word).put(file,1);
                 }
                 else{
-                    if(!cp.get(word).contains(file)){
-                        cp.get(word).put(file,1);
+                    if(!st.get(word).contains(file)){
+                        st.get(word).put(file,1);
                     }
-                    else cp.get(word).put(file,cp.get(word).get(file) +1);
+                    else st.get(word).put(file,st.get(word).get(file) +1);
                 }
             }
+            in.close();
         }
-        return cp;
     }
 }

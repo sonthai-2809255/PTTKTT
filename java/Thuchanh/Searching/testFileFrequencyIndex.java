@@ -11,10 +11,10 @@ public class testFileFrequencyIndex
         
     }
 
-    public static void main (String args[]){
+    public static void main (String args[]) throws java.io.FileNotFoundException {
         FileFrequencyIndex fi= new FileFrequencyIndex();
         fi.create(args);
-        fi.checked("the");
-        fi.checked("tank");
+        fi.frequency("the");
+        fi.frequency("tank");
     }
 }

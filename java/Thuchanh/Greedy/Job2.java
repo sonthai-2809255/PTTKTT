@@ -11,7 +11,8 @@ public class Job2 implements Comparable<Job2>
    private double  finish;
    private double profit;
    
-   public Job2(int s, int f, int p){
+   
+   public Job2(double s, double  f, double p){
        this.start = s;
        this.finish = f;
        this.profit = p;

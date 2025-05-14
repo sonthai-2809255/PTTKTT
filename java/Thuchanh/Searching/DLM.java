@@ -1,10 +1,16 @@
 import java.util.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class DLM{
     private Monhoc monhoc;
     private ST<String,Student> dssv;
     
+    public static String DSSV = "student.csv";
+    public static String CSDL = "tCsdl_03_04.csv";
+    public static String JAVA = "tJava_03_04.csv";
+    public static String TRR = "tTrr_03_03.csv";
+
     // Constructer Danh Sách lớp Môn với đầu vào là một In 
     //cho Danh sách sinh viên
     public DLM(In in){
@@ -24,10 +30,6 @@ public class DLM{
     }
     
     public void updateRate(String fileMon){
-        dssv = update(fileMon);
-    }
-    
-    private ST update(String fileMon){
         
         String [] a= fileMon.split("\\.");
         String token= a[0];
@@ -46,37 +48,71 @@ public class DLM{
             String masv= parts[0];
             // chuyển điểm sang kiểu double
             Double diem= Double.parseDouble(parts[1]);
-            //lấy sinh viên theo masv
-            Student A = dssv.get(masv);
-            //cập nhật bảng điểm
-            A.bangdiem().put(monhoc,diem);
-            //cập nhật sinh viên lại danh sách sv
-            dssv.put(masv,A);
+            dssv.get(masv).bangdiem().put(monhoc,diem);
+            
         }
-        return dssv;
+
     }
     
-    public static void main(String args[]){
+    public void displaySortByDiem(){
+        List<Student> liststudent = new ArrayList();
+        for(String c: dssv.keys()){
+            liststudent.add(dssv.get(c));
+        }
+        //sort
+        Collections.sort(liststudent);
         
-        DLM dlm= new DLM(new In(args[0]));
+        for(Student student : liststudent){
+             StdOut.println(student+"\t");
+        }
+    }
     
-        dlm.updateRate(args[1]);
-        dlm.updateRate(args[2]);
-        dlm.updateRate(args[3]);
-        
-        ST<String,Student> dssv = dlm.getdssv();
-        for(String c : dssv){
+    public void display(){
+        for(String c : dssv.keys()){
+            //
             Student student = dssv.get(c);
-            StdOut.print(student+" ");
+            StdOut.print(student+"\t");
+            //
             ST<Monhoc,Double> bangdiem= student.bangdiem();
-            for(Monhoc a: bangdiem){
-                StdOut.printf("%4.2f",student.bangdiem().get(a));
+            //duyệt từng môn trong bảng điểm
+            for(Monhoc a: bangdiem.keys()){
+                StdOut.printf("%4.2f "+(a.tenmon()+ "   ") ,bangdiem.get(a));
             }
             StdOut.println();
         }
+    }
+    
+    public double TBC(){
+        double sum=0.0;
+        for(String c: dssv.keys())
+        {
+            sum+= dssv.get(c).diemTb();
+        }
+        return (double) sum/dssv.size();
+    }
+    
+    
+    public static void main(String args[]){
+        //tạo ds
+        DLM dlm= new DLM(new In(DSSV));
         
+        //sắp xếp theo điểm tăng dần
+        dlm.displaySortByDiem();
+        //tính điểm trung bình chung cả lớp
+        System.out.println("---------");
+        System.out.println("điểm trung bình chung: "+ dlm.TBC());
         
-}
+        //nhập điểm môn
+        dlm.updateRate(TRR);
+        dlm.updateRate(CSDL);
+        dlm.updateRate(JAVA);
+        
+        System.out.println("---------");
+        dlm.display();
+                
+        }
+        
+    
 }
 
 

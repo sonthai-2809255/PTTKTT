@@ -1,19 +1,14 @@
  
 import java.util.*;
 import java.io.*;
-/**
- * Write a description of class Thisinh here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+
 public class Thisinh implements Comparable<Thisinh> {
-    // instance variables - replace the example below with your own
+    
     private final String hodem;
     private final String ten;
     private final VnDate ngaysinh;
     private final String que;
-    private final double diemTb;
+    private  double diemTb;
 
     /**
      * Constructor for objects of class Thisinh
@@ -34,7 +29,7 @@ public class Thisinh implements Comparable<Thisinh> {
        
        if (a.length < 5) {
         throw new IllegalArgumentException("Dữ liệu không hợp lệ: " + student);
-    }
+       }
        hodem   =a[0];
        ten     =a[1];
        ngaysinh=new VnDate(a[2]);
@@ -42,23 +37,18 @@ public class Thisinh implements Comparable<Thisinh> {
        diemTb  =Double.parseDouble(a[4]);
     }
     
-    
     public String hodem(){
         return hodem;
     }
-    
     public String ten(){
         return ten;
     }
-    
     public VnDate ngaysinh(){
         return ngaysinh;
     }
-    
     public String que(){
         return que;
     }
-    
      public double diemTb(){
          return diemTb;
     }
@@ -71,7 +61,6 @@ public class Thisinh implements Comparable<Thisinh> {
         
     }
     
-
     /** 
      * so sanh hai sinh vien theo hodem
      */
@@ -79,7 +68,6 @@ public class Thisinh implements Comparable<Thisinh> {
         public int compare(Thisinh v, Thisinh w) {
             return v.hodem.compareTo(w.hodem);        }
     }
-
     /** 
      * so sanh hai sinh vien theo ten
      */
@@ -87,7 +75,6 @@ public class Thisinh implements Comparable<Thisinh> {
         public int compare(Thisinh v, Thisinh w) {
             return v.ten.compareTo(w.ten);        }
     }
-
     /** 
      * so sanh hai sinh vien theo ngaysinh
      */
@@ -95,7 +82,6 @@ public class Thisinh implements Comparable<Thisinh> {
         public int compare(Thisinh v, Thisinh w) {
             return v.ngaysinh.compareTo(w.ngaysinh);        }
     }
-    
     /** 
      * so sanh hai sinh vien theo que
      */
@@ -103,7 +89,6 @@ public class Thisinh implements Comparable<Thisinh> {
         public int compare(Thisinh v, Thisinh w) {
             return v.que.compareTo(w.que);        }
     }
-    
      /** 
      * so sanh hai sinh vien theo diemTb
      */
@@ -116,6 +101,16 @@ public class Thisinh implements Comparable<Thisinh> {
         return Double.compare(this.diemTb,that.diemTb);
     }
     
+    public void setDTB(double [] diem) throws Exception {
+        double sum=0.0;
+        int n = diem.length;
+        if(n==0) throw new Exception("khong ton tai diem");
+        for(int i =0; i< n ; i++){
+            sum+= diem[i];
+        }
+        this.diemTb = (double)sum/n;
+        
+    }
     
     /**
     * So sánh sinh viên này với một đối tượng khác.
@@ -138,8 +133,6 @@ public class Thisinh implements Comparable<Thisinh> {
                && (this.ngaysinh.equals(that.ngaysinh))
                && (this.que.equals( that.que)) ;
    }
-   
-   
    
    /**
     * Trả về mã băm của sinh viên này.

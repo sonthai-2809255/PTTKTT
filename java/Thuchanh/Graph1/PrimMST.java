@@ -7,7 +7,6 @@ public class PrimMST {
     private double[] distTo;//lưu trọng số của cạnh nhỏ nhất kết nối mỗi đỉnh của cây khung
     private IndexMinPQ<Double> pq;//hàng đợi ưu tiên theo chỉ mục để chọn cạnh có trọng số nhỏ nhất
     //private Stack<Edge> mst;// danh sách chứa các cạnh của cây khung nhỏ nhấtp
-    private int num_Point;
     private double weight;// tổng trọng số của cây khung nhỏ nhất
     /**
      *
@@ -21,26 +20,20 @@ public class PrimMST {
             if (e.weight() < 0)
                 throw new IllegalArgumentException("cạnh " + e + " có trọng số âm");
         }
-
         edgeto = new Edge[G.V()];
         distTo = new double[G.V()];
         mark= new boolean[G.V()];
-        num_Point= G.V();
         weight= 0.0;
         validateVertex(s);
 
         for (int v = 0; v < G.V(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;// khởi tạo trọng số của đỉnh nguồn(s) đến đỉnh khác đều là vô cùng lớn
-
         distTo[s] = 0.0;
-
         // khởi tạo đỉnh nguồn(đỉnh đầu tiên duyệt)
         pq = new IndexMinPQ<Double>(G.V());
         pq.insert(s, distTo[s]);
-
-    // Bo sung vong while chon phan tu min trong PQ .......
-
-    
+        
+        // vong while chon phan tu min trong PQ.
          while (!pq.isEmpty()) {
             int v = pq.delMin(); // Lấy đỉnh có khoảng cách nhỏ nhất
             mark[v]= true;// đánh dấu đã thêm vào tập đỉnh có trong khung cây
@@ -69,11 +62,9 @@ public class PrimMST {
      * @throws IllegalArgumentException trừ khi {@code 0 <= v < V}
      */
     public Iterable<Edge> Mst() {
-        // int v=0;
-        // validateVertex(v);
-        // if (!hasPathTo(v)) return null;
+        
         Stack<Edge> mst = new Stack<Edge>();
-        for (int i= 0;i< this.Point();i++) {
+        for (int i= 0;i< edgeto.length;i++) {
             if(edgeto[i]==null) continue;
             mst.push(edgeto[i]);
             this.weight+=edgeto[i].weight();
@@ -81,20 +72,17 @@ public class PrimMST {
         return mst;
     }
 
-        // ném IllegalArgumentException trừ khi {@code 0 <= v < V}
-        private void validateVertex(int v) {
+    private void validateVertex(int v) {
             int V = distTo.length;
             if (v < 0 || v >= V)
                 throw new IllegalArgumentException("đỉnh " + v + " không nằm trong khoảng từ 0 đến " + (V-1));
         }
         // trả về tổng trọng số của cây khung
-        public double weight(){
+    public double weight(){
             return weight;
         }
-        //trả về số đỉnh trong đồ thị
-        public int Point(){
-            return  num_Point;
-        }
+ 
+   
         /**
          * Kiểm tra đơn vị kiểu dữ liệu {@code PrimMST}.
          *
@@ -103,11 +91,11 @@ public class PrimMST {
         public static void main(String[] args) {
             // truyền luồng đầu vào: tên file args[0]="tinyEWDn.txt
             // args[0]="tinyEWDn.txt";
-            In in = new In(args[0]);
+            In in = new In("tinyEWD.txt");
             EdgeWeightedGraph G = new EdgeWeightedGraph(in);
             
             // truyền đỉnh nguồn
-            int s = Integer.parseInt(args[1]);
+            int s = Integer.parseInt("0");
     
             // tính toán đường đi ngắn nhất
             PrimMST pr = new PrimMST(G, s);

@@ -9,12 +9,12 @@ import java.io.*;
  */
 public class Student implements Comparable<Student> {
     // instance variables - replace the example below with your own
-    private final String maSv;
-    private final String hodem;
-    private final String ten;
-    private final VnDate ngaysinh;
-    private final String que;
-    private final double diemTb;
+    private   String maSv;
+    private   String hodem;
+    private   String ten;
+    private   VnDate ngaysinh;
+    private   String que;
+    private   double diemTb;
     private ST<Monhoc,Double> bangdiem;
 
     /**
@@ -75,7 +75,7 @@ public class Student implements Comparable<Student> {
     @Override
     public String toString(){
         
-     return String.format("%-10s %10s %10s %10s %10s %8.2f",maSv,hodem,ten,ngaysinh,que,diemTb);
+     return String.format("%-10s | %10s %10s | %10s | %10s | %8.2f |  ",maSv,hodem,ten,ngaysinh,que,diemTb);
         
     }
     
@@ -119,10 +119,12 @@ public class Student implements Comparable<Student> {
             return v.que.compareTo(w.que);        }
     }
     
-    
     public int compareTo(Student that) {
-    return this.maSv.compareTo(that.maSv);
+        return Double.compare(this.diemTb, that.diemTb);
     }
+    //public int compareTo(Student that) {
+    //return this.maSv.compareTo(that.maSv);
+    //}
     
     /**
     * So sánh sinh viên này với một đối tượng khác.

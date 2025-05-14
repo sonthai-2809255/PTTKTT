@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=MergeSort
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ MergeSort\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=MergeSort()
+comment2.params=v\ w
+comment2.target=boolean\ less(java.lang.Comparable,\ java.lang.Comparable)
+comment3.params=a
+comment3.target=void\ mergeSort(java.lang.Comparable[])
+comment4.params=a\ aux\ lo\ hi
+comment4.target=void\ mergeSort(java.lang.Comparable[],\ java.lang.Comparable[],\ int,\ int)
+comment5.params=a\ aux\ lo\ mid\ hi
+comment5.target=void\ merge(java.lang.Comparable[],\ java.lang.Comparable[],\ int,\ int,\ int)
+numComments=6

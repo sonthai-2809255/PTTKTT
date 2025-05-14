@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=EdgeWeightedDirectedCycle_T
+comment0.text=\r\n\ \ Bi\u00EAn\ d\u1ECBch\:\ \ javac\ EdgeWeightedDirectedCycle.java\r\n\ \ Th\u1EF1c\ thi\:\ \ \ \ java\ EdgeWeightedDirectedCycle\ V\ E\ F\r\n\ \ Ph\u1EE5\ thu\u1ED9c\:\ \ \ EdgeWeightedDigraph.java\ DirectedEdge.java\ Stack.java\r\n\r\n\ \ T\u00ECm\ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ trong\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1.\r\n\ \ Th\u1EDDi\ gian\ ch\u1EA1y\:\ O(E\ +\ V).\r\n\r\n
+comment1.params=G
+comment1.target=EdgeWeightedDirectedCycle_T(EdgeWeightedDigraph_T)
+comment1.text=v\u1EDBi\ DirectedEdge\ e\:\ w->v
+comment2.params=G\ v
+comment2.target=void\ dfs(EdgeWeightedDigraph_T,\ int)
+comment3.params=
+comment3.target=boolean\ hasCycle()
+comment3.text=\r\n\ \u0110\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ kh\u00F4ng?\r\n\ @return\ {@code\ true}\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng,\r\n\ {@code\ false}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i\r\n
+comment4.params=
+comment4.target=java.lang.Iterable\ cycle()
+comment4.text=\r\n\ Tr\u1EA3\ v\u1EC1\ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ h\u01B0\u1EDBng\ c\u00F3\ tr\u1ECDng\ s\u1ED1\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng,\r\n\ v\u00E0\ {@code\ null}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i.\r\n\ @return\ m\u1ED9t\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng\ (d\u01B0\u1EDBi\ d\u1EA1ng\ iterable)\ n\u1EBFu\ \u0111\u1ED3\ th\u1ECB\ c\u00F3\ ch\u1EE9a\ chu\ tr\u00ECnh\ c\u00F3\ h\u01B0\u1EDBng,\r\n\ \ \ \ v\u00E0\ {@code\ null}\ n\u1EBFu\ ng\u01B0\u1EE3c\ l\u1EA1i\r\n
+comment5.params=
+comment5.target=boolean\ check()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+comment6.text=\r\n\ Unit\ tests\ cho\ ki\u1EC3u\ d\u1EEF\ li\u1EC7u\ {@code\ EdgeWeightedDirectedCycle}.\r\n\r\n\ @param\ args\ c\u00E1c\ \u0111\u1ED1i\ s\u1ED1\ d\u00F2ng\ l\u1EC7nh\r\n
+numComments=7

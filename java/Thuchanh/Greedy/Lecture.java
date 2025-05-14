@@ -11,7 +11,7 @@ public class Lecture implements Comparable<Lecture>
    private double  finish;
    private double profit;
    
-   public Lecture(int s, int f, int p){
+   public Lecture(double s, double f, double  p){
        this.start = s;
        this.finish = f;
        this.profit = p;
@@ -29,4 +29,5 @@ public double profit(){ return this.profit;}
 public String toString(){
     return String.format( "start: "+ this.start +" finish: "+ this.finish+" profit: "+ this.profit);
 }
+
 }

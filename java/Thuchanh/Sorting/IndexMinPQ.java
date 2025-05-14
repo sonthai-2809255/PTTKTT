@@ -30,7 +30,7 @@ import java.util.NoSuchElementException;
  *
  *  @param <Key> the generic type of key on this priority queue
  */
-public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Iterable<Integer> {
+public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer> {
     private int n;           // number of elements on PQ
     private int[] pq;        // binary heap using 1-based indexing
     private int[] qp;        // inverse of pq - qp[pq[i]] = pq[qp[i]] = i
@@ -43,7 +43,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
      * @param  maxN the keys on this priority queue are index from {@code 0} to {@code maxN - 1}
      * @throws IllegalArgumentException if {@code maxN < 0}
      */
-    public IndexMinPriorityQueue(int maxN) {
+    public IndexMinPQ(int maxN) {
         if (maxN < 0) throw new IllegalArgumentException();
         n = 0;
         keys = (Key[]) new Comparable[maxN + 1];    // make this of length maxN??
@@ -195,7 +195,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
     public void increaseKey(int i, Key key) {
         if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         if (keys[i].compareTo(key) >= 0)
-            throw new IllegalArgumentException("Calling increaseKey() with given argument would not strictly increase the key");
+        throw new IllegalArgumentException("Calling increaseKey() with given argument would not strictly increase the key");
 
         keys[i] = key;
         sink(qp[i]);
@@ -213,7 +213,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
     public void decreaseKey(int i, Key key) {
         if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         if (keys[i].compareTo(key) <= 0)
-            throw new IllegalArgumentException("Calling decreaseKey() with given argument would not strictly decrease the key");
+        throw new IllegalArgumentException("Calling decreaseKey() with given argument would not strictly decrease the key");
 
         keys[i] = key;
         swim(qp[i]);
@@ -266,7 +266,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
     private void sink(int k) {
         while (2*k <= n) {
             int j = 2*k;
-            if (j < n && less(j, j+1)) j++; // compare child rode 1 versus child node 2
+            if (j < n && less(j+1, j)) j++; // compare child rode 1 versus child node 2
             if (less(k, j)) break;
             exch(k, j);
             k = j;
@@ -287,12 +287,12 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
 
     private class HeapIterator implements Iterator<Integer> {
         // create a new pq
-        private IndexMinPriorityQueue<Key> copy;
+        private IndexMinPQ<Key> copy;
 
         // add all elements to copy of heap
         // takes linear time since already in heap order so no keys move
         public HeapIterator() {
-            copy = new IndexMinPriorityQueue<Key>(pq.length - 1);
+            copy = new IndexMinPQ<Key>(pq.length - 1);
             for (int i = 1; i <= n; i++)
                 copy.insert(pq[i], keys[pq[i]]);
         }
@@ -315,7 +315,7 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
         // insert a bunch of strings
         double [] doubles = { 32,23,10,34,53,66,54,89,24 };
 
-        IndexMinPriorityQueue<String> pq = new IndexMinPriorityQueue<String>(doubles.length);
+        IndexMinPQ<String> pq = new IndexMinPQ<String>(doubles.length);
         for (int i = 0; i < doubles.length; i++) {
             pq.insert(i, String.valueOf(doubles[i]));
         }
@@ -324,14 +324,8 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
         for (int i : pq) {
             StdOut.println(i + " " + doubles[i]);
         }
-
         StdOut.println();
 
-        // increase or decrease the key
-        pq.increaseKey(1,String.valueOf(12+ 12));
-        pq.decreaseKey(2,String.valueOf(0));
-
-        // delete and print each key
         while (!pq.isEmpty()) {
             String key = pq.minKey();
             int i = pq.delMin();
@@ -339,27 +333,6 @@ public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Itera
         }
         StdOut.println();
 
-        // reinsert the same strings
-        for (int i = 0; i < doubles.length; i++) {
-            pq.insert(i, String.valueOf(doubles[i]));
-        }
-
-        // delete them in random order
-        int[] perm = new int[doubles.length];
-        for (int i = 0; i < doubles.length; i++)
-            perm[i] = i;
-//        StdRandom.shuffle(perm);
-//        for (int i = 0; i < perm.length; i++) {
-//            String key = pq.keyOf(perm[i]);
-//            pq.delete(perm[i]);
-//            StdOut.println(perm[i] + " " + key);
-//        }
-        while (!pq.isEmpty()) {
-            String key = pq.minKey();
-            int i = pq.delMin();
-            StdOut.println(i + " " + key);
-        }
-        StdOut.println();
 
     }
 }

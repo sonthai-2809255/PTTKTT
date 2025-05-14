@@ -40,10 +40,63 @@
  *  @author Kevin Wayne
  */
 public class FrequencyCounter {
-
+    private int distinct, words;
+    private ST<String,Integer> st;
+    
     // Do not instantiate.
-    private FrequencyCounter() { }
+    private FrequencyCounter(String filename, int minlen) throws FileNotFoundException {
+        this.distinct = this.words =0;
+        this.st = new ST<String,Integer>();
+        System.setIn(new FileInputStream (new File(filename)));
+        
+        while(!StdIn.isEmpty()){
+            String Key = StdIn.readString();
+            if(Key.length() < minlen) continue;
+            this.words += 1;
+            
+            if(st.contains(Key)) {
+               st.put(Key,st.get(Key) +1); 
+            }
+            else{
+                st.put(Key,1);
+                this.distinct += 1;
+            }
+        }
+        
+    }
+    
+    public static class WordCount{
+        private String word;
+        private int count;
+        
+        public WordCount(String w, int c){
+            this.word= w;
+            this.count = c;
+        }
+        
+        @Override
+        public String toString(){
+        
+         return String.format("%s   %5d",this.word, this.count);
+        }
+        
+    }
 
+    // find a key with the highest frequency count
+    public WordCount getMaxcount(){
+        String max = "";
+        st.put(max, 0);
+        for (String word : st.keys()) {
+            if (st.get(word) > st.get(max))
+                max = word;
+        }
+        return new WordCount(max, st.get(max));
+    }
+    
+    public int numberOfWords(){
+        return this.words;
+    }
+    
     /**
      * Reads in a command-line integer and sequence of words from
      * standard input and prints out a word (whose length exceeds

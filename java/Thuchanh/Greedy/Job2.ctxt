@@ -2,7 +2,7 @@
 comment0.target=Job2
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Job2\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=s\ f\ p
-comment1.target=Job2(int,\ int,\ int)
+comment1.target=Job2(double,\ double,\ double)
 comment2.params=that
 comment2.target=int\ compareTo(Job2)
 comment3.params=

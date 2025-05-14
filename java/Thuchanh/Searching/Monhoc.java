@@ -26,7 +26,13 @@ public class Monhoc implements Comparable<Monhoc>{
     }
     
     public int compareTo(Monhoc that){
-        return Integer.compare(this.tinchi, that.tinchi);
+        int cmp = this.tenmon.compareTo(that.tenmon);
+        if (cmp != 0) return cmp;
+    
+        cmp = Integer.compare(this.tinchi, that.tinchi);
+        if (cmp != 0) return cmp;
+    
+        return Integer.compare(this.kythu, that.kythu);  
     }
     
     public boolean equals(Object other){
