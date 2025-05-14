@@ -1,82 +1,100 @@
-import java.util.*;
-import java.io.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
- * Lớp {@code IndexMinPQ} biểu diễn một hàng đợi ưu tiên theo chỉ mục với các khóa tổng quát.
- * Nó hỗ trợ các thao tác như <em>chèn</em>, <em>xóa khóa nhỏ nhất</em>,
- * cùng với <em>xóa</em> và <em>thay đổi khóa</em>.
- * <p>
- * Để cho phép người dùng tham chiếu đến các phần tử trong hàng đợi ưu tiên,
- * mỗi khóa được liên kết với một số nguyên trong khoảng từ {@code 0} đến {@code maxN - 1}.
- * <p>
- * Triển khai này sử dụng một cây nhị phân heap cùng với một mảng để ánh xạ
- * các khóa với các chỉ mục trong phạm vi được chỉ định.
- * Các thao tác như <em>chèn</em>, <em>xóa khóa nhỏ nhất</em>, <em>xóa</em>,
- * <em>thay đổi khóa</em>, <em>giảm khóa</em> và <em>tăng khóa</em>
- * đều có thời gian thực thi logarithmic.
- * Các thao tác như <em>kiểm tra rỗng</em>, <em>kích thước</em>, <em>chỉ mục nhỏ nhất</em>, <em>khóa nhỏ nhất</em>
- * và <em>truy xuất khóa</em> có thời gian thực thi hằng số.
- * <p>
- * @param <Key> kiểu tổng quát của khóa trong hàng đợi ưu tiên này
+ *  The {@code IndexMaxPQ} class represents an indexed priority queue of generic keys.
+ *  It supports the usual <em>insert</em> and <em>delete-the-maximum</em>
+ *  operations, along with <em>delete</em> and <em>change-the-key</em> 
+ *  methods. In order to let the client refer to items on the priority queue,
+ *  an integer between {@code 0} and {@code maxN - 1}
+ *  is associated with each key-the client
+ *  uses this integer to specify which key to delete or change.
+ *  It also supports methods for peeking at a maximum key,
+ *  testing if the priority queue is empty, and iterating through
+ *  the keys.
+ *  <p>
+ *  This implementation uses a binary heap along with an array to associate
+ *  keys with integers in the given range.
+ *  The <em>insert</em>, <em>delete-the-maximum</em>, <em>delete</em>,
+ *  <em>change-key</em>, <em>decrease-key</em>, and <em>increase-key</em>
+ *  operations take logarithmic time.
+ *  The <em>is-empty</em>, <em>size</em>, <em>max-index</em>, <em>max-key</em>,
+ *  and <em>key-of</em> operations take constant time.
+ *  Construction takes time proportional to the specified capacity.
+ *  <p>
+ *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/24pq">Section 2.4</a> of
+ *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
+ *
+ *  @author Robert Sedgewick
+ *  @author Kevin Wayne
+ *
+ *  @param <Key> the generic type of key on this priority queue
  */
-public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer> {
-    private int n;          // Số phần tử trong hàng đợi ưu tiên
-    private int[] pq;       // Heap nhị phân sử dụng chỉ mục bắt đầu từ 1
-    private int[] qp;       // Phản ánh của pq - qp[pq[i]] = pq[qp[i]] = i
-    private Key[] keys;     // keys[i] = giá trị ưu tiên của i
+public class IndexMinPriorityQueue<Key extends Comparable<Key>> implements Iterable<Integer> {
+    private int n;           // number of elements on PQ
+    private int[] pq;        // binary heap using 1-based indexing
+    private int[] qp;        // inverse of pq - qp[pq[i]] = pq[qp[i]] = i
+    private Key[] keys;      // keys[i] = priority of i
 
     /**
-     * Khởi tạo một hàng đợi ưu tiên theo chỉ mục rỗng với chỉ số từ {@code 0} đến {@code maxN - 1}.
+     * Initializes an empty indexed priority queue with indices between {@code 0}
+     * and {@code maxN - 1}.
      *
-     * @param  maxN số lượng phần tử tối đa trong hàng đợi ưu tiên
-     * @throws IllegalArgumentException nếu {@code maxN < 0}
+     * @param  maxN the keys on this priority queue are index from {@code 0} to {@code maxN - 1}
+     * @throws IllegalArgumentException if {@code maxN < 0}
      */
-    public IndexMinPQ(int maxN) {
+    public IndexMinPriorityQueue(int maxN) {
         if (maxN < 0) throw new IllegalArgumentException();
         n = 0;
-        keys = (Key[]) new Comparable[maxN + 1];
+        keys = (Key[]) new Comparable[maxN + 1];    // make this of length maxN??
         pq   = new int[maxN + 1];
-        qp   = new int[maxN + 1];
+        qp   = new int[maxN + 1];                   // make this of length maxN??
         for (int i = 0; i <= maxN; i++)
             qp[i] = -1;
     }
 
     /**
-     * Kiểm tra hàng đợi ưu tiên có rỗng không.
+     * Returns true if this priority queue is empty.
      *
-     * @return {@code true} nếu rỗng, ngược lại {@code false}
+     * @return {@code true} if this priority queue is empty;
+     *         {@code false} otherwise
      */
     public boolean isEmpty() {
         return n == 0;
     }
 
     /**
-     * Kiểm tra xem chỉ mục {@code i} có trong hàng đợi ưu tiên không.
+     * Is {@code i} an index on this priority queue?
      *
-     * @param  i chỉ mục cần kiểm tra
-     * @return {@code true} nếu tồn tại, ngược lại {@code false}
+     * @param  i an index
+     * @return {@code true} if {@code i} is an index on this priority queue;
+     *         {@code false} otherwise
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
      */
     public boolean contains(int i) {
         return qp[i] != -1;
     }
 
     /**
-     * Trả về số lượng phần tử trong hàng đợi ưu tiên.
+     * Returns the number of keys on this priority queue.
      *
-     * @return số lượng phần tử
+     * @return the number of keys on this priority queue 
      */
     public int size() {
         return n;
     }
 
-    /**
-     * Chèn một khóa với chỉ mục tương ứng.
+   /**
+     * Associate key with index i.
      *
-     * @param  i chỉ mục
-     * @param  key khóa tương ứng
+     * @param  i an index
+     * @param  key the key to associate with index {@code i}
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     * @throws IllegalArgumentException if there already is an item
+     *         associated with index {@code i}
      */
     public void insert(int i, Key key) {
-        if (contains(i)) throw new IllegalArgumentException("Chỉ mục đã tồn tại trong hàng đợi ưu tiên");
+        if (contains(i)) throw new IllegalArgumentException("index is already in the priority queue");
         n++;
         qp[i] = n;
         pq[n] = i;
@@ -85,58 +103,147 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
     }
 
     /**
-     * Trả về chỉ mục của khóa nhỏ nhất.
+     * Returns an index associated with a maximum key.
      *
-     * @return chỉ mục của khóa nhỏ nhất
+     * @return an index associated with a maximum key
+     * @throws NoSuchElementException if this priority queue is empty
      */
     public int minIndex() {
-        if (n == 0) throw new NoSuchElementException("Hàng đợi ưu tiên rỗng");
+        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
         return pq[1];
     }
 
     /**
-     * Trả về khóa nhỏ nhất.
+     * Returns a maximum key.
      *
-     * @return khóa nhỏ nhất
+     * @return a maximum key
+     * @throws NoSuchElementException if this priority queue is empty
      */
     public Key minKey() {
-        if (n == 0) throw new NoSuchElementException("Hàng đợi ưu tiên rỗng");
+        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
         return keys[pq[1]];
     }
 
     /**
-     * Xóa khóa nhỏ nhất và trả về chỉ mục của nó.
+     * Removes a maximum key and returns its associated index.
      *
-     * @return chỉ mục của khóa nhỏ nhất
+     * @return an index associated with a maximum key
+     * @throws NoSuchElementException if this priority queue is empty
      */
     public int delMin() {
-        if (n == 0) throw new NoSuchElementException("Hàng đợi ưu tiên rỗng");
-        int min = pq[1];
+        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
+        int max = pq[1];
         exch(1, n--);
         sink(1);
-        qp[min] = -1;
-        keys[min] = null;
-        pq[n+1] = -1;
-        return min;
+
+        assert pq[n+1] == max;
+        qp[max] = -1;        // delete
+        keys[max] = null;    // to help with garbage collection
+        pq[n+1] = -1;        // not needed
+        return max;
     }
 
     /**
-     * Giảm khóa tại chỉ mục {@code i}.
+     * Returns the key associated with index {@code i}.
      *
-     * @param  i chỉ mục cần giảm khóa
-     * @param  key khóa mới (phải nhỏ hơn khóa hiện tại)
+     * @param  i the index of the key to return
+     * @return the key associated with index {@code i}
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     * @throws NoSuchElementException no key is associated with index {@code i}
+     */
+    public Key keyOf(int i) {
+        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        else return keys[i];
+    }
+
+    /**
+     * Change the key associated with index {@code i} to the specified value.
+     *
+     * @param  i the index of the key to change
+     * @param  key change the key associated with index {@code i} to this key
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     */
+    public void changeKey(int i, Key key) {
+        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        keys[i] = key;
+        swim(qp[i]);
+        sink(qp[i]);
+    }
+
+   /**
+     * Change the key associated with index {@code i} to the specified value.
+     *
+     * @param  i the index of the key to change
+     * @param  key change the key associated with index {@code i} to this key
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     * @deprecated Replaced by {@code changeKey(int, Key)}.
+     */
+    @Deprecated
+    public void change(int i, Key key) {
+        changeKey(i, key);
+    }
+
+    /**
+     * Increase the key associated with index {@code i} to the specified value.
+     *
+     * @param  i the index of the key to increase
+     * @param  key increase the key associated with index {@code i} to this key
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     * @throws IllegalArgumentException if {@code key <= keyOf(i)}
+     * @throws NoSuchElementException no key is associated with index {@code i}
+     */
+    public void increaseKey(int i, Key key) {
+        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        if (keys[i].compareTo(key) >= 0)
+            throw new IllegalArgumentException("Calling increaseKey() with given argument would not strictly increase the key");
+
+        keys[i] = key;
+        sink(qp[i]);
+    }
+
+    /**
+     * Decrease the key associated with index {@code i} to the specified value.
+     *
+     * @param  i the index of the key to decrease
+     * @param  key decrease the key associated with index {@code i} to this key
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     * @throws IllegalArgumentException if {@code key >= keyOf(i)}
+     * @throws NoSuchElementException no key is associated with index {@code i}
      */
     public void decreaseKey(int i, Key key) {
-        if (!contains(i)) throw new NoSuchElementException("Chỉ mục không tồn tại trong hàng đợi ưu tiên");
+        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
         if (keys[i].compareTo(key) <= 0)
-            throw new IllegalArgumentException("Khóa mới phải nhỏ hơn khóa hiện tại");
+            throw new IllegalArgumentException("Calling decreaseKey() with given argument would not strictly decrease the key");
+
         keys[i] = key;
         swim(qp[i]);
     }
 
     /**
-     * Hoán đổi hai phần tử trong heap.
+     * Remove the key on the priority queue associated with index {@code i}.
+     *
+     * @param  i the index of the key to remove
+     * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
+     * @throws NoSuchElementException no key is associated with index {@code i}
      */
+    public void delete(int i) {
+        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        int index = qp[i];
+        exch(index, n--);
+        swim(index);
+        sink(index);
+        keys[i] = null;
+        qp[i] = -1;
+    }
+
+
+   /***************************************************************************
+    * General helper functions.
+    ***************************************************************************/
+    private boolean less(int i, int j) {
+        return keys[pq[i]].compareTo(keys[pq[j]]) < 0;
+    }
+
     private void exch(int i, int j) {
         int swap = pq[i];
         pq[i] = pq[j];
@@ -145,54 +252,114 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
         qp[pq[j]] = j;
     }
 
-    /**
-     * Đẩy một nút lên khi cần thiết.
-     */
+
+   /***************************************************************************
+    * Heap helper functions.
+    ***************************************************************************/
     private void swim(int k) {
-        while (k > 1 && keys[pq[k]].compareTo(keys[pq[k/2]]) < 0) {
+        while (k > 1 && less(k, k/2)) {
             exch(k, k/2);
             k = k/2;
         }
     }
 
-    /**
-     * Đẩy một nút xuống khi cần thiết.
-     */
     private void sink(int k) {
         while (2*k <= n) {
             int j = 2*k;
-            if (j < n && keys[pq[j]].compareTo(keys[pq[j+1]]) > 0) j++;
-            if (keys[pq[k]].compareTo(keys[pq[j]]) <= 0) break;
+            if (j < n && less(j, j+1)) j++; // compare child rode 1 versus child node 2
+            if (less(k, j)) break;
             exch(k, j);
             k = j;
         }
     }
-    
-    // bộ duyệt @Override
-public Iterator<Integer> iterator() {
-    return new HeapIterator();
-}
 
-private class HeapIterator implements Iterator<Integer> {
-    private IndexMinPQ<Key> copy;
 
-    public HeapIterator() {
-        copy = new IndexMinPQ<>(pq.length - 1);
-        for (int i = 1; i <= n; i++) {
-            copy.insert(pq[i], keys[pq[i]]);
+    /**
+     * Returns an iterator that iterates over the keys on the
+     * priority queue in descending order.
+     * The iterator doesn't implement {@code remove()} since it's optional.
+     *
+     * @return an iterator that iterates over the keys in descending order
+     */
+    public Iterator<Integer> iterator() {
+        return new HeapIterator();
+    }
+
+    private class HeapIterator implements Iterator<Integer> {
+        // create a new pq
+        private IndexMinPriorityQueue<Key> copy;
+
+        // add all elements to copy of heap
+        // takes linear time since already in heap order so no keys move
+        public HeapIterator() {
+            copy = new IndexMinPriorityQueue<Key>(pq.length - 1);
+            for (int i = 1; i <= n; i++)
+                copy.insert(pq[i], keys[pq[i]]);
+        }
+
+        public boolean hasNext()  { return !copy.isEmpty();                     }
+        public void remove()      { throw new UnsupportedOperationException();  }
+
+        public Integer next() {
+            if (!hasNext()) throw new NoSuchElementException();
+            return copy.delMin();
         }
     }
 
-    @Override
-    public boolean hasNext() {
-        return !copy.isEmpty();
-    }
+    /**
+     * Unit tests the {@code IndexMaxPQ} data type.
+     *
+     * @param args the command-line arguments
+     */
+    public static void main(String[] args) {
+        // insert a bunch of strings
+        double [] doubles = { 32,23,10,34,53,66,54,89,24 };
 
-    @Override
-    public Integer next() {
-        if (!hasNext()) throw new NoSuchElementException();
-        return copy.delMin();
-    }
-}
+        IndexMinPriorityQueue<String> pq = new IndexMinPriorityQueue<String>(doubles.length);
+        for (int i = 0; i < doubles.length; i++) {
+            pq.insert(i, String.valueOf(doubles[i]));
+        }
 
+        // print each key using the iterator
+        for (int i : pq) {
+            StdOut.println(i + " " + doubles[i]);
+        }
+
+        StdOut.println();
+
+        // increase or decrease the key
+        pq.increaseKey(1,String.valueOf(12+ 12));
+        pq.decreaseKey(2,String.valueOf(0));
+
+        // delete and print each key
+        while (!pq.isEmpty()) {
+            String key = pq.minKey();
+            int i = pq.delMin();
+            StdOut.println(i + " " + key);
+        }
+        StdOut.println();
+
+        // reinsert the same strings
+        for (int i = 0; i < doubles.length; i++) {
+            pq.insert(i, String.valueOf(doubles[i]));
+        }
+
+        // delete them in random order
+        int[] perm = new int[doubles.length];
+        for (int i = 0; i < doubles.length; i++)
+            perm[i] = i;
+//        StdRandom.shuffle(perm);
+//        for (int i = 0; i < perm.length; i++) {
+//            String key = pq.keyOf(perm[i]);
+//            pq.delete(perm[i]);
+//            StdOut.println(perm[i] + " " + key);
+//        }
+        while (!pq.isEmpty()) {
+            String key = pq.minKey();
+            int i = pq.delMin();
+            StdOut.println(i + " " + key);
+        }
+        StdOut.println();
+
+    }
 }
