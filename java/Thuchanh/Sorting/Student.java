@@ -29,7 +29,7 @@ public class Student implements Comparable<Student> {
      */
     public Student(String hodem, String ten, VnDate ngaysinh, double diemTb) {
         if (Double.isNaN(diemTb) || Double.isInfinite(diemTb))
-            throw new IllegalArgumentException("Diểm trung bình không thể là NaN hoặc vô hạn");
+        throw new IllegalArgumentException("Diểm trung bình không thể là NaN hoặc vô hạn");
         this.hodem = hodem;
         this.ten = ten;
         this.ngaysinh = ngaysinh;
@@ -53,7 +53,7 @@ public class Student implements Comparable<Student> {
         ngaysinh = new VnDate(a[3]);
         diemTb = Double.parseDouble(a[4]);
         if (Double.isNaN(diemTb) || Double.isInfinite(diemTb))
-            throw new IllegalArgumentException("Điểm trung bình không thể là NaN hoặc vô hạn");
+        throw new IllegalArgumentException("Điểm trung bình không thể là NaN hoặc vô hạn");
     }
 
     /**
@@ -64,35 +64,24 @@ public class Student implements Comparable<Student> {
     public String hodem() {
         return hodem;
     }
-
     /* trả về tên của sinh viên */
     public String ten() {
         return ten;
     }
-
     /**
      * Trả về ngày tháng năm sinh của sinh viên
-     *
-     * @return ngày tháng năm sinh của sinh viên
      */
-
     public VnDate ngaysinh() {
         return ngaysinh;
     }
-
     /**
      * trả về điểm trung bình của sinh viên
-     *
-     * @return điểm trung bình của sinh viên
      */
     public double diemTb() {
         return diemTb;
     }
-
     /**
      * Trả về chuỗi biểu diễn thông tin sinh vên.
-     *
-     * @return chuỗi biểu diễn thông tin sinh viên
      */
     @Override
     public String toString() {
@@ -154,16 +143,7 @@ public class Student implements Comparable<Student> {
 
         @Override
         public int compare(Student v, Student w) {
-            return v.ten.compareTo(w.ten);
-        }
-    }
-
-    /**
-     * so sánh hai sinh viên theo họ đệm
-     */
-    public static class hodemOrder implements Comparator<Student> {
-        @Override
-        public int compare(Student v, Student w) {
+            if(v.ten != w.ten)return v.ten.compareTo(w.ten);
             return v.hodem.compareTo(w.hodem);
         }
     }
@@ -215,12 +195,6 @@ public class Student implements Comparable<Student> {
 
         StdOut.println("Sắp xếp theo tên");
         Arrays.sort(a, new Student.tenOrder());
-        for (int i = 0; i < a.length; i++)
-            StdOut.println(a[i]);
-        StdOut.println();
-
-        StdOut.println("Sắp xếp theo họ đệm");
-        Arrays.sort(a, new Student.hodemOrder());
         for (int i = 0; i < a.length; i++)
             StdOut.println(a[i]);
         StdOut.println();

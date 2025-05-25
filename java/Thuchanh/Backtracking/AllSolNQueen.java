@@ -5,7 +5,7 @@ Problem using backtracking */
 class AllSolNQueen  
 { 
   
-static int N = 8;  
+static int N = 4;
 static int k = 1; 
   
 /* A utility function to print solution */
@@ -27,21 +27,24 @@ function is called when "col" queens are
 already placed in columns from 0 to col -1.  
 So we need to check only left side for  
 attacking queens */
+    /// kiieerm tra
 static boolean isSafe(int board[][], int row, int col)  
 {  
     int i, j;  
-  
+    ///  kiểm các cột phía bên trái ô đang xét
     /* Check this row on left side */
     for (i = 0; i < col; i++)  
         if (board[row][i] == 1)  
             return false;  
   
     /* Check upper diagonal on left side */
+    ///  KIẺM TRA HÀNG CHÉO TRÊN BÊN TRÁI
     for (i = row, j = col; i >= 0 && j >= 0; i--, j--)  
         if (board[i][j] == 1)  
             return false;  
   
     /* Check lower diagonal on left side */
+    ///  KIỂM TRA HÀNG CHÉO TRÊN BÊN DƯỚI
     for (i = row, j = col; j >= 0 && i < N; i++, j--)  
         if (board[i][j] == 1)  
             return false;  
@@ -63,7 +66,8 @@ static boolean solveNQUtil(int board[][], int col)
   
     /* Consider this column and try placing  
     this queen in all rows one by one */
-    boolean res = false;  
+    boolean res = false;
+    ///  DUYỆT TỪNG HÀNG TRONG CỘT ĐANG XÉT
     for (int i = 0; i < N; i++)  
     {  
         /* Check if queen can be placed on  
@@ -88,6 +92,7 @@ static boolean solveNQUtil(int board[][], int col)
   
     /* If queen can not be place in any row in  
         this column col then return false */
+    /// NẾU KHÔNG THẤY HÀNG NÀO ĐẶT ĐƯỢC HẬU VÀO
     return res;  
 }  
   
@@ -99,7 +104,7 @@ prints placement of queens in the form of 1s.
 Please note that there may be more than one  
 solutions, this function prints one of the  
 feasible solutions.*/
-static void solveNQ()  
+static void solveNQ()
 {  
     int board[][] = new int[N][N];  
   

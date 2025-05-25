@@ -1,5 +1,4 @@
 import java.util.*;
-import java.io.*;
 import java.util.ArrayList;
 
 public class DLM{
@@ -7,12 +6,14 @@ public class DLM{
     private ST<String,Student> dssv;
     
     public static String DSSV = "student.csv";
-    public static String CSDL = "tCsdl_03_04.csv";
-    public static String JAVA = "tJava_03_04.csv";
-    public static String TRR = "tTrr_03_03.csv";
+    public static String CSDL = "Csdl_03_04.csv";
+    public static String JAVA = "Java_03_04.csv";
+    public static String TRR = "Trr_03_03.csv";
 
     // Constructer Danh Sách lớp Môn với đầu vào là một In 
     //cho Danh sách sinh viên
+    public DLM(){}
+
     public DLM(In in){
         dssv = new ST<String,Student>();
         
@@ -21,7 +22,7 @@ public class DLM{
             String[] parts = line.split(",");
             String key = parts[0];
             Student val = new Student(line);
-            dssv.put(key,val);
+            addStudent(key,val);
         }
         
     }
@@ -29,7 +30,7 @@ public class DLM{
         return dssv;
     }
     
-    public void updateRate(String fileMon){
+    public void inpputRate(String fileMon){
         
         String [] a= fileMon.split("\\.");
         String token= a[0];
@@ -54,13 +55,13 @@ public class DLM{
 
     }
     
-    public void displaySortByDiem(){
+    public void displaySortByname(){
         List<Student> liststudent = new ArrayList();
         for(String c: dssv.keys()){
             liststudent.add(dssv.get(c));
         }
         //sort
-        Collections.sort(liststudent);
+        Collections.sort(liststudent, new Student.tenOrder());
         
         for(Student student : liststudent){
              StdOut.println(student+"\t");
@@ -69,19 +70,20 @@ public class DLM{
     
     public void display(){
         for(String c : dssv.keys()){
-            //
-            Student student = dssv.get(c);
-            StdOut.print(student+"\t");
-            //
-            ST<Monhoc,Double> bangdiem= student.bangdiem();
-            //duyệt từng môn trong bảng điểm
-            for(Monhoc a: bangdiem.keys()){
-                StdOut.printf("%4.2f "+(a.tenmon()+ "   ") ,bangdiem.get(a));
-            }
-            StdOut.println();
+            display(dssv.get(c));
         }
     }
-    
+
+    public void display(Student student ){
+        StdOut.print(student+"\t");
+        //
+        ST<Monhoc,Double> bangdiem= student.bangdiem();
+        //duyệt từng môn trong bảng điểm
+        for(Monhoc a: bangdiem.keys()){
+            StdOut.printf("%4.2f "+(a.tenmon()+ "   ") ,bangdiem.get(a));
+        }
+        StdOut.println();
+    }
     public double TBC(){
         double sum=0.0;
         for(String c: dssv.keys())
@@ -91,25 +93,45 @@ public class DLM{
         return (double) sum/dssv.size();
     }
     
-    
+    public void searchStudent(String masv){
+        if (!dssv.contains(masv)){
+            StdOut.println("không có sinh viên ");
+            return ;
+        }
+        display(dssv.get(masv));
+    }
+    public void addStudent(String masv, Student sv){
+        dssv.put(masv, sv);
+    }
+
+    public Student getStudent(String msv){
+        return dssv.get(msv);
+    }
+
+    public Iterable<String> keys(){
+        return dssv.keys();
+    }
+
+    public int size(){
+        return dssv.size();
+    }
     public static void main(String args[]){
         //tạo ds
         DLM dlm= new DLM(new In(DSSV));
-        
-        //sắp xếp theo điểm tăng dần
-        dlm.displaySortByDiem();
+        //sắp xếp theo tên
+        dlm.displaySortByname();
         //tính điểm trung bình chung cả lớp
         System.out.println("---------");
         System.out.println("điểm trung bình chung: "+ dlm.TBC());
         
         //nhập điểm môn
-        dlm.updateRate(TRR);
-        dlm.updateRate(CSDL);
-        dlm.updateRate(JAVA);
-        
+        for(String filename : args ){
+            dlm.inpputRate(filename);
+        }
         System.out.println("---------");
         dlm.display();
-                
+        ///
+        dlm.searchStudent("111111111");
         }
         
     

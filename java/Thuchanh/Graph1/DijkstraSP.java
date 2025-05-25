@@ -222,13 +222,10 @@ public class DijkstraSP {
         //args[0]="tinyEWD.txt";
         In in = new In("tinyEWD.txt");
         EdgeWeightedDigraph G = new EdgeWeightedDigraph(in);
-        
         //truyền đỉnh nguồn
         int s = Integer.parseInt("0");
-
         // compute shortest paths
         DijkstraSP sp = new DijkstraSP(G, s);
-        
         // print shortest path
         for (int t = 0; t < G.V(); t++) {
             if (sp.hasPathTo(t)) {

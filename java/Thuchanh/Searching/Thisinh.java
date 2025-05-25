@@ -13,13 +13,13 @@ public class Thisinh implements Comparable<Thisinh> {
     /**
      * Constructor for objects of class Thisinh
      */
-    public Thisinh( String hodem, String ten,String ngaysinh,String que, String diemTb)
+    public Thisinh( String hodem, String ten,String ngaysinh,String que)
     {
        this.hodem=hodem;
        this.ten=ten;
        this.ngaysinh= new VnDate(ngaysinh);
        this.que=que;
-       this.diemTb=Double.parseDouble(diemTb);
+       this.diemTb=0.0;
     }
     
     /** khởi một student với tham số đầu vào là một String*/
@@ -27,14 +27,14 @@ public class Thisinh implements Comparable<Thisinh> {
         
        String a[]= student.split(",");
        
-       if (a.length < 5) {
+       if (a.length < 4) {
         throw new IllegalArgumentException("Dữ liệu không hợp lệ: " + student);
        }
        hodem   =a[0];
        ten     =a[1];
        ngaysinh=new VnDate(a[2]);
        que     =a[3];
-       diemTb  =Double.parseDouble(a[4]);
+       diemTb  =0.0;
     }
     
     public String hodem(){
@@ -62,18 +62,13 @@ public class Thisinh implements Comparable<Thisinh> {
     }
     
     /** 
-     * so sanh hai sinh vien theo hodem
-     */
-    public static class hodemOrder implements Comparator<Thisinh>{
-        public int compare(Thisinh v, Thisinh w) {
-            return v.hodem.compareTo(w.hodem);        }
-    }
-    /** 
      * so sanh hai sinh vien theo ten
      */
     public static class tenOrder implements Comparator<Thisinh>{
         public int compare(Thisinh v, Thisinh w) {
-            return v.ten.compareTo(w.ten);        }
+            if(v.ten != w.ten)  return v.ten.compareTo(w.ten);  
+            return v.hodem.compareTo(w.hodem);
+        }
     }
     /** 
      * so sanh hai sinh vien theo ngaysinh
@@ -155,10 +150,10 @@ public class Thisinh implements Comparable<Thisinh> {
 
   public static void main(String[] args) {
     Thisinh a[] = new Thisinh[4];
-    a[0] =new Thisinh("dangquang,son,28/09/2005,nghean,29.0");
-    a[1] =new Thisinh("hoangduc,trong,26/3/2005,thainuyen,30.43");
-    a[2] = new Thisinh("buiminh,thuong,14/6/2005,hoabinh,33.34");
-        a[3] = new Thisinh("dovan,an,12/2/2004,thaibinh,28.90");
+    a[0] =new Thisinh("dangquang,son,28/09/2005,nghean");
+    a[1] =new Thisinh("hoangduc,trong,26/3/2005,thainuyen");
+    a[2] = new Thisinh("buiminh,thuong,14/6/2005,hoabinh");
+    a[3] = new Thisinh("dovan,an,12/2/2004,thaibinh");
     
     StdOut.println("chưa săp  xếp:");
     Arrays.sort(a);
@@ -171,10 +166,10 @@ public class Thisinh implements Comparable<Thisinh> {
     for(Thisinh c: a) {
         StdOut.println(c);
     }
-    String s=new String("dangquang,son,28/09/2005,nghean,29.0");
+    String s=new String("dangquang,son,28/09/2005,nghean");
     String[] b = s.split(",");
     
-    Thisinh c= new Thisinh(b[0],b[1],b[2],b[3],b[4]);
+    Thisinh c= new Thisinh(b[0],b[1],b[2],b[3]);
     StdOut.println(c);
     
 }

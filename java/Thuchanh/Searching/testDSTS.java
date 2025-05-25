@@ -2,7 +2,7 @@
 public class testDSTS {
     testDSTS(){}
     public static void main(String[] args) {
-         In in= new In("thisinh.txt");
+         In in= new In("thisinh.csv");
          try{
             DSTS ds= new DSTS(in);
             

@@ -100,7 +100,10 @@ public class Student implements Comparable<Student> {
      */
     public static class tenOrder implements Comparator<Student>{
         public int compare(Student v, Student w) {
-            return v.ten.compareTo(w.ten);        }
+            if(v.ten != w.ten)
+                return v.ten.compareTo(w.ten);
+            return  v.hodem.compareTo(w.hodem);
+        }
     }
 
     /** 

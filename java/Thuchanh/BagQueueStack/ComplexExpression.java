@@ -28,19 +28,19 @@ public class ComplexExpression implements Expression{
         return null;
     }
     
-    public int interpret() {
+    public double interpret() {
         Stack<Expression> stack = new Stack<>();    
         for (String s : tokenArray) {
             if (isOperator(s)) {
                 Expression rightExpression = stack.pop();
                 Expression leftExpression = stack.pop();
                 Expression operator = getOperator(s, leftExpression,rightExpression);
-                int result = operator.interpret();
+                double result = operator.interpret();
                 stack.push(new Number(result));
             } 
             else {
                 if (s.compareTo("") == 0) continue; 
-                Expression i = new Number(Integer.parseInt(s));
+                Expression i = new Number(Double.parseDouble(s));
                 stack.push(i);
             }
         }

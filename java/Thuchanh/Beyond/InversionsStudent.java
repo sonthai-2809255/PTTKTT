@@ -101,7 +101,7 @@ public class InversionsStudent {
     /**
      * Returns the number of inversions in the comparable array.
      * The argument array is not modified.
-     * @param  a the array
+     * @param  the array
      * @param <Key> the inferred type of the elements in the array
      * @return the number of inversions in the array. An inversion is a pair of 
      *         indicies {@code i} and {@code j} such that {@code i < j}
@@ -153,6 +153,11 @@ public class InversionsStudent {
         //
         StdOut.println(InversionsStudent.count(a));
         StdOut.println(InversionsStudent.count(b));
+
+        a.sort(null);
+        for(Student c : a){
+            System.out.println(c);
+        }
     }
 }
 

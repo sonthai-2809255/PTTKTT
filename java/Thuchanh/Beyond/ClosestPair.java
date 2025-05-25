@@ -61,9 +61,10 @@ public class ClosestPair {
         Point2D[] pointsByX = new Point2D[n];
         for (int i = 0; i < n; i++)
             pointsByX[i] = points[i];
-        Arrays.sort(pointsByX, Point2D.X_ORDER);
+        Arrays.sort(pointsByX, Point2D.X_ORDER);// sắp xếp tăng dần,giảm độ phức tạp khi tìm kiếm, chia tập ra thành hai nửa dễ dàng
 
         // check for coincident points
+        ///kiểm tra 2 điểm trùng nhau =>O(n)
         for (int i = 0; i < n-1; i++) {
             if (pointsByX[i].equals(pointsByX[i+1])) {
                 bestDistance = 0.0;
@@ -79,8 +80,9 @@ public class ClosestPair {
             pointsByY[i] = pointsByX[i];
 
         // auxiliary array
+        // mảng bổ trợ để merge
         Point2D[] aux = new Point2D[n];
-
+        
         closest(pointsByX, pointsByY, aux, 0, n-1);
     }
 
@@ -95,14 +97,17 @@ public class ClosestPair {
         Point2D median = pointsByX[mid];
 
         // compute closest pair with both endpoints in left subarray or both in right subarray
+        ///đệ quy chia
         double delta1 = closest(pointsByX, pointsByY, aux, lo, mid);
         double delta2 = closest(pointsByX, pointsByY, aux, mid+1, hi);
         double delta = Math.min(delta1, delta2);
 
         // merge back so that pointsByY[lo..hi] are sorted by y-coordinate
+        /// sắp xếp trộn theo tung độ
         merge(pointsByY, aux, lo, mid, hi);
 
         // aux[0..m-1] = sequence of points closer than delta, sorted by y-coordinate
+        ///  liệt kê các điểm đã săp xếp theo y nằm bên trong dải delta
         int m = 0;
         for (int i = lo; i <= hi; i++) {
             if (Math.abs(pointsByY[i].x() - median.x()) < delta)
@@ -110,6 +115,7 @@ public class ClosestPair {
         }
 
         // compare each point to its neighbors with y-coordinate closer than delta
+        /// duyệt tất cả các điểm đã tìm được, tìm cặp gần hơn cặp đã tìm được trước đó
         for (int i = 0; i < m; i++) {
             // a geometric packing argument shows that this loop iterates at most 7 times
             for (int j = i+1; (j < m) && (aux[j].y() - aux[i].y() < delta); j++) {
@@ -125,12 +131,12 @@ public class ClosestPair {
                 }
             }
         }
+        ///  trả về khoảng cách bé nhất giữa 2 điểm
         return delta;
     }
 
     /**
      * Returns one of the points in the closest pair of points.
-     *
      * @return one of the two points in the closest pair of points;
      *         {@code null} if no such point (because there are fewer than 2 points)
      */
@@ -166,6 +172,7 @@ public class ClosestPair {
 
     // stably merge a[lo .. mid] with a[mid+1 ..hi] using aux[lo .. hi]
     // precondition: a[lo .. mid] and a[mid+1 .. hi] are sorted subarrays
+    /// sắp xếp trộn , các điểm được so sánh theo toạ độ tung
     private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
         // copy to aux[]
         for (int k = lo; k <= hi; k++) {
@@ -202,12 +209,13 @@ public class ClosestPair {
     
     public static void main(String[] args) throws IOException {
         System.setIn(new FileInputStream(new File("rs1423.txt")));
+        
         int n = StdIn.readInt();
         Point2D[] points = new Point2D[n];
         for (int i = 0; i < n; i++) {
             double x = StdIn.readDouble();
             double y = StdIn.readDouble();
-            points[i] = new Point2D(x, y);
+           points[i] = new Point2D(x, y);
         }
         ClosestPair closest = new ClosestPair(points);
         StdOut.println(closest.distance() + " from " + closest.either() + " to " + closest.other());

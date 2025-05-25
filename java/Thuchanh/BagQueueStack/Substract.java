@@ -10,7 +10,7 @@ public class Substract implements Expression{
         this.rightExpression = rightExpression;
     }
     @Override
-    public int interpret() {
+    public double interpret() {
         return leftExpression.interpret() - rightExpression.interpret();
     }
 

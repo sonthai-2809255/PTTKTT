@@ -22,7 +22,7 @@ public class FileFrequencyIndex
     }
     
     
-    public void frequency(String word){
+    public void query(String word){
          StdOut.println(word);
          List<FileFrequency> list = new ArrayList<>();
 
@@ -43,9 +43,8 @@ public class FileFrequencyIndex
         }
     }
     
-
     /** phương thức bổ trợ */
-    public void   create (String args[]){
+    public void readFile (String args[]){
         
          StdOut.println("Indexing files");
         for(String filename : args){

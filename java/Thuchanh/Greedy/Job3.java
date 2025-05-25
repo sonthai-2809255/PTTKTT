@@ -19,7 +19,6 @@ public class Job3 implements Comparable<Job3>
     public double getTime(){
         return time;
     }
-    
     public double getDeadline(){
         return deadline;
     }

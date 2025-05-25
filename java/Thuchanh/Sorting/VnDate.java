@@ -58,29 +58,34 @@ public class VnDate implements Comparable<VnDate> {
         if (!isValid(day, month, year))
             throw new IllegalArgumentException("Invalid date");
     }
+    
+    public VnDate(String token, String date) {
+        String fields [] = date.split(token);
+        if(fields.length != 3){
+            throw new IllegalArgumentException("Invalid date");
+        }
+
+        day = Integer.parseInt(fields[0]);
+        month = Integer.parseInt(fields[1]);
+        year = Integer.parseInt(fields[2]);
+        if (!isValid(day, month, year))
+            throw new IllegalArgumentException("Invalid date");
+    }
 
     /**
      * Trả về tháng.
-     * 
-     * @return tháng (một số nguyên giữa 1 và 12)
      */
     public int month() {
         return month;
     }
-
     /**
      * Trả về ngày.
-     * 
-     * @return ngày (một số nguyên giữa 1 và 31)
      */
     public int day() {
         return day;
     }
-
     /**
      * Trả về năm.
-     * 
-     * @return năm
      */
     public int year() {
         return year;
@@ -123,18 +128,13 @@ public class VnDate implements Comparable<VnDate> {
     /**
      * So sánh hai ngày theo thứ tự thời gian.
      *
-     * @param that ngày khác
-     * @return {@code true} nếu ngày này sau ngày đó; {@code false} ngược lại
      */
     public boolean isAfter(VnDate that) {
         return compareTo(that) > 0;
     }
-
     /**
      * So sánh hai ngày theo thứ tự thời gian.
      *
-     * @param that ngày khác
-     * @return {@code true} nếu ngày này trước ngày đó; {@code false} ngược lại
      */
     public boolean isBefore(VnDate that) {
         return compareTo(that) < 0;
@@ -176,9 +176,6 @@ public class VnDate implements Comparable<VnDate> {
 
     /**
      * So sánh ngày này với ngày được chỉ định.
-     *
-     * @param other ngày khác
-     * @return {@code true} nếu ngày này bằng {@code other}; {@code false} ngược lại
      */
     //@Override
     public boolean equals(Object other) {
@@ -212,7 +209,8 @@ public class VnDate implements Comparable<VnDate> {
      * @param args các tham số dòng lệnh
      */
     public static void main(String[] args) {
-        VnDate today = new VnDate(25, 2, 2004);
+        //VnDate today = new VnDate(25, 2, 2004);
+        VnDate today = new VnDate("-","24-2-2004");
         StdOut.println(today);
         for (int i = 0; i < 10; i++) {
             today = today.next();

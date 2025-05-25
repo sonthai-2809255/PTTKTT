@@ -2,10 +2,12 @@
   <library name="stdlib">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../stdlib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../algs4.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/../stdlib.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../algs4.jar!/" />
     </SOURCES>
   </library>
 </component>

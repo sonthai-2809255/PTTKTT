@@ -21,8 +21,7 @@ public class IntervalPartitioning
     }
     
     public void findLastRoomsNonConflictingLecture(In in){
-        MinPQ<Lecture> pq = new MinPQ<>();
-        
+        MinPQ<Lecture> pq = new MinPQ<>();        
         //read file
         while(!in.isEmpty()){
             double start = in.readDouble();
@@ -30,7 +29,6 @@ public class IntervalPartitioning
             double profit = in.readDouble();
             pq.insert(new Lecture(start,finish,profit));
         }
-        
         //solve
         while(!pq.isEmpty()){
             Lecture select = pq.delMin();

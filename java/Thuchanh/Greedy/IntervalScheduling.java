@@ -9,9 +9,9 @@ import java.io.File;
  */
 public class IntervalScheduling
 {
-    private List<Job2> jobs;
+    private List<Job2> jobresult;
     
-    public IntervalScheduling(){ jobs = new ArrayList<Job2>();}
+    public IntervalScheduling(){ jobresult = new ArrayList<Job2>();}
     
     public void findLastNonConflictingJob(In in){
         MinPQ<Job2> pq= new MinPQ<Job2>();
@@ -28,7 +28,7 @@ public class IntervalScheduling
         while(!pq.isEmpty()){
             Job2 select = pq.delMin();
             if(select.getStart() >= LastFinishTime){
-                this.jobs.add(select);
+                this.jobresult.add(select);
                 LastFinishTime = select.getFinish();
             }
         }
@@ -36,12 +36,12 @@ public class IntervalScheduling
     }
     
     public void display(){
-         for(Job2 c: this.jobs){
+         for(Job2 c: this.jobresult){
             System.out.println(c.toString() );
         }
     }
     
-    public List<Job2> getJobs(){return this.jobs;}
+    public List<Job2> result(){return this.jobresult;}
     
         
     public static void main(String args[]){

@@ -2,14 +2,14 @@
 
 public class Number implements Expression{
 
-    private final int n;
-    public Number(int n){
+    private final double n;
+    public Number(double n){
         this.n = n;
     }
      
    
     @Override
-    public int interpret() {
+    public double interpret() {
         return n;
     }
     

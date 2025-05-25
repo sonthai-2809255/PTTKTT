@@ -1,13 +1,11 @@
 import java.util.*;
 import java.io.*;
 public class PrimMST {
-   
-    private boolean[] mark;// đánh dấu các đỉnh đã có trong cây khung
-    private Edge[] edgeto;//lưu các cạnh gần nhất nối vào đỉnh của cây khung
-    private double[] distTo;//lưu trọng số của cạnh nhỏ nhất kết nối mỗi đỉnh của cây khung
-    private IndexMinPQ<Double> pq;//hàng đợi ưu tiên theo chỉ mục để chọn cạnh có trọng số nhỏ nhất
-    //private Stack<Edge> mst;// danh sách chứa các cạnh của cây khung nhỏ nhấtp
-    private double weight;// tổng trọng số của cây khung nhỏ nhất
+    private boolean[] mark;                 // đánh dấu các đỉnh đã có trong cây khung
+    private Edge[] edgeto;                  //lưu các cạnh gần nhất nối vào đỉnh của cây khung
+    private double[] distTo;                //lưu trọng số của cạnh nhỏ nhất kết nối mỗi đỉnh của cây khung
+    private IndexMinPQ<Double> pq;          //hàng đợi ưu tiên theo chỉ mục để chọn cạnh có trọng số nhỏ nhất
+    private double weight;                  // tổng trọng số của cây khung nhỏ nhất
     /**
      *
      * @param  G đồ thị có trọng số cạnh
@@ -18,21 +16,19 @@ public class PrimMST {
     public PrimMST(EdgeWeightedGraph G, int s) {
         for (Edge e : G.edges()) {
             if (e.weight() < 0)
-                throw new IllegalArgumentException("cạnh " + e + " có trọng số âm");
+            throw new IllegalArgumentException("cạnh " + e + " có trọng số âm");
         }
         edgeto = new Edge[G.V()];
         distTo = new double[G.V()];
         mark= new boolean[G.V()];
         weight= 0.0;
         validateVertex(s);
-
         for (int v = 0; v < G.V(); v++)
             distTo[v] = Double.POSITIVE_INFINITY;// khởi tạo trọng số của đỉnh nguồn(s) đến đỉnh khác đều là vô cùng lớn
         distTo[s] = 0.0;
         // khởi tạo đỉnh nguồn(đỉnh đầu tiên duyệt)
         pq = new IndexMinPQ<Double>(G.V());
         pq.insert(s, distTo[s]);
-        
         // vong while chon phan tu min trong PQ.
          while (!pq.isEmpty()) {
             int v = pq.delMin(); // Lấy đỉnh có khoảng cách nhỏ nhất
@@ -49,8 +45,6 @@ public class PrimMST {
                 }
              }   
             }
-
-    
     }
 
 
@@ -75,7 +69,8 @@ public class PrimMST {
     private void validateVertex(int v) {
             int V = distTo.length;
             if (v < 0 || v >= V)
-                throw new IllegalArgumentException("đỉnh " + v + " không nằm trong khoảng từ 0 đến " + (V-1));
+                throw new IllegalArgumentException("đỉnh " + v +
+                " không nằm trong khoảng từ 0 đến " + (V-1));
         }
         // trả về tổng trọng số của cây khung
     public double weight(){
@@ -93,10 +88,8 @@ public class PrimMST {
             // args[0]="tinyEWDn.txt";
             In in = new In("tinyEWD.txt");
             EdgeWeightedGraph G = new EdgeWeightedGraph(in);
-            
             // truyền đỉnh nguồn
             int s = Integer.parseInt("0");
-    
             // tính toán đường đi ngắn nhất
             PrimMST pr = new PrimMST(G, s);
             //in ra các cạnh trong đồ thị đầu vào

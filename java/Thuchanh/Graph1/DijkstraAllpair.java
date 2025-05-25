@@ -2,12 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class DijkstraAllpair{
-    
-   private DijkstraAllpair() { }
-   
+    private DijkstraAllpair() { }
     public void find(EdgeWeightedDigraph G){
         int sodinh= G.V();
-        for(int dich=1;dich<sodinh;dich++){
+        for(int dich=0;dich<sodinh;dich++){
         DijkstraSP[] sp = new DijkstraSP[sodinh];
         for(int goc=0;  goc<sodinh; goc++){
             sp[goc]= new DijkstraSP(G, goc);
@@ -24,7 +22,7 @@ public class DijkstraAllpair{
         }
       }
     }
-    
+
     public static void main(String[] args) {
         //khởi tạo luồng đầu vào để truyền file
         In in = new In("tinyEWD.txt");

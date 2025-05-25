@@ -3,5 +3,5 @@ comment0.target=Product
 comment1.params=leftExpression\ rightExpression
 comment1.target=Product(Expression,\ Expression)
 comment2.params=
-comment2.target=int\ interpret()
+comment2.target=double\ interpret()
 numComments=3

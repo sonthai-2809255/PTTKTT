@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * Write a description of class MergeSort here.
  *
@@ -14,17 +12,18 @@ public  class MergeSort
         return (v.compareTo(w) < 0);
     }
     
-    public static <Key extends Comparable<Key>> void mergeSort(Key [] a){
+    public static <Key extends Comparable<Key>> void sort(Key [] a){
+        ///  tạo mảng hỗ trợ
         Key [] aux = (Key[]) new Comparable[a.length];
-        
-        mergeSort(a, aux, 0, a.length -1);
+
+        sort(a, aux, 0, a.length -1);
     }
     
-    private static <Key extends Comparable<Key>> void mergeSort(Key [] a, Key [] aux , int lo, int hi){
+    private static <Key extends Comparable<Key>> void sort(Key [] a, Key [] aux , int lo, int hi){
         if (hi <= lo ) return ;
         int mid = lo + (hi - lo)/2;
-        mergeSort(a, aux, lo , mid);
-        mergeSort(a, aux, mid+1, hi);
+        sort(a, aux, lo , mid);
+        sort(a, aux, mid+1, hi);
         merge(a,aux,lo , mid, hi);
         
     };
@@ -60,7 +59,7 @@ public  class MergeSort
     
     StdOut.println("theo diemtb:");
     //sort
-    mergeSort(a);
+    sort(a);
     for(Thisinh c: a) {
         StdOut.println(c);
     }

@@ -27,6 +27,7 @@
 
 
 public class DijkstraSD {
+    
     private double[] distTo;          // distTo[v] = distance  of shortest v->s path
     private DirectedEdge[] edgeTo;    // edgeTo[v] = last edge on shortest v->s path
     private IndexMinPQ<Double> pq;    // priority queue of vertices
@@ -205,13 +206,10 @@ public class DijkstraSD {
         //args[0]="tinyEWD.txt";
         In in = new In("tinyEWD.txt");
         EdgeWeightedDigraph_T G = new EdgeWeightedDigraph_T(in);
-
         //truyền đỉnh nguồn
         int s = Integer.parseInt("6");
-
         // compute shortest paths
         DijkstraSD sp = new DijkstraSD(G, s);
-
         // print shortest path
         for (int t = 0; t < G.V(); t++) {
             if (sp.hasPathTo(t)) {

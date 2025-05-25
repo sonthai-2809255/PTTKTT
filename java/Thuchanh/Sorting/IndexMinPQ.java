@@ -94,7 +94,9 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      *         associated with index {@code i}
      */
     public void insert(int i, Key key) {
-        if (contains(i)) throw new IllegalArgumentException("index is already in the priority queue");
+        if (contains(i)) 
+        throw new IllegalArgumentException("index is already in the priority queue");
+        
         n++;
         qp[i] = n;
         pq[n] = i;
@@ -109,7 +111,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws NoSuchElementException if this priority queue is empty
      */
     public int minIndex() {
-        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
+        if (n == 0) 
+            throw new NoSuchElementException("Priority queue underflow");
         return pq[1];
     }
 
@@ -120,7 +123,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws NoSuchElementException if this priority queue is empty
      */
     public Key minKey() {
-        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
+        if (n == 0) 
+            throw new NoSuchElementException("Priority queue underflow");
         return keys[pq[1]];
     }
 
@@ -131,7 +135,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws NoSuchElementException if this priority queue is empty
      */
     public int delMin() {
-        if (n == 0) throw new NoSuchElementException("Priority queue underflow");
+        if (n == 0) 
+            throw new NoSuchElementException("Priority queue underflow");
         int max = pq[1];
         exch(1, n--);
         sink(1);
@@ -152,7 +157,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws NoSuchElementException no key is associated with index {@code i}
      */
     public Key keyOf(int i) {
-        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        if (!contains(i)) 
+            throw new NoSuchElementException("index is not in the priority queue");
         else return keys[i];
     }
 
@@ -164,7 +170,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws IllegalArgumentException unless {@code 0 <= i < maxN}
      */
     public void changeKey(int i, Key key) {
-        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        if (!contains(i)) 
+            throw new NoSuchElementException("index is not in the priority queue");
         keys[i] = key;
         swim(qp[i]);
         sink(qp[i]);
@@ -193,7 +200,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws NoSuchElementException no key is associated with index {@code i}
      */
     public void increaseKey(int i, Key key) {
-        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        if (!contains(i)) 
+        throw new NoSuchElementException("index is not in the priority queue");
         if (keys[i].compareTo(key) >= 0)
         throw new IllegalArgumentException("Calling increaseKey() with given argument would not strictly increase the key");
 
@@ -227,7 +235,8 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
      * @throws NoSuchElementException no key is associated with index {@code i}
      */
     public void delete(int i) {
-        if (!contains(i)) throw new NoSuchElementException("index is not in the priority queue");
+        if (!contains(i)) 
+            throw new NoSuchElementException("index is not in the priority queue");
         int index = qp[i];
         exch(index, n--);
         swim(index);
@@ -332,7 +341,5 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
             StdOut.println(i + " " + key);
         }
         StdOut.println();
-
-
     }
 }

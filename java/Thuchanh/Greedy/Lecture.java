@@ -16,18 +16,16 @@ public class Lecture implements Comparable<Lecture>
        this.finish = f;
        this.profit = p;
     }
-public int compareTo(Lecture that){
-    return Double.compare(this.start , that.start);
-}
-
-public double start(){ return this.start;}
-
-public double finish(){ return this.finish;}
-
-public double profit(){ return this.profit;}
-
-public String toString(){
-    return String.format( "start: "+ this.start +" finish: "+ this.finish+" profit: "+ this.profit);
-}
-
+    public int compareTo(Lecture that){
+        return Double.compare(this.start , that.start);
+    }
+    
+    public double start(){ return this.start;}
+    public double finish(){ return this.finish;}
+    public double profit(){ return this.profit;}
+    
+        public String toString(){
+            return String.format( "start: "+ this.start +" finish: "+
+            this.finish+" profit: "+ this.profit);
+    }
 }

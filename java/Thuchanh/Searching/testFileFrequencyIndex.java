@@ -13,8 +13,15 @@ public class testFileFrequencyIndex
 
     public static void main (String args[]) throws java.io.FileNotFoundException {
         FileFrequencyIndex fi= new FileFrequencyIndex();
-        fi.create(args);
-        fi.frequency("the");
-        fi.frequency("tank");
+        String filename[] ={"ex1.txt", "ex2.txt","ex3.txt","ex4.txt"};
+
+//        fi.readFile(filename);
+//        fi.query("the");
+//        fi.query("tank");
+
+        FileSearch fs = new FileSearch();
+        fs.readfile(filename);
+        fs.query("the best of times");
+        StdOut.println(fs.results());
     }
 }

@@ -7,5 +7,5 @@ comment2.target=boolean\ isOperator(java.lang.String)
 comment3.params=s\ left\ right
 comment3.target=Expression\ getOperator(java.lang.String,\ Expression,\ Expression)
 comment4.params=
-comment4.target=int\ interpret()
+comment4.target=double\ interpret()
 numComments=5

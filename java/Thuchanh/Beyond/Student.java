@@ -73,17 +73,14 @@ public class Student implements Comparable<Student> {
     /** 
      * so sanh hai sinh vien theo hodem
      */
-    public static class hodemOrder implements Comparator<Student>{
-        public int compare(Student v, Student w) {
-            return v.hodem.compareTo(w.hodem);        }
-    }
 
     /** 
      * so sanh hai sinh vien theo ten
      */
     public static class tenOrder implements Comparator<Student>{
         public int compare(Student v, Student w) {
-            return v.ten.compareTo(w.ten);        }
+            if(v.ten != w.ten)return v.ten.compareTo(w.ten);
+            return v.hodem.compareTo(w.hodem);}
     }
 
     /*

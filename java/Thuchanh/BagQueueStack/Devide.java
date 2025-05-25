@@ -9,7 +9,7 @@ public class Devide implements Expression
         this.rightExpression = rightExpression;
     }
     @Override
-    public int interpret() {
+    public double interpret() {
         // Kiểm tra chia cho 0
         if (rightExpression.interpret() == 0) {
             throw new ArithmeticException("Division by zero is not allowed.");

@@ -42,7 +42,8 @@ public class TopStudent {
     }
     
     /** solve init list */
-    public void solve(String filename,int sizetop) throws FileNotFoundException {
+    public void solve(String filename,String size) throws FileNotFoundException {
+        int sizetop= Integer.parseInt(size);
         System.setIn(new FileInputStream(new File(filename)));
         MinPQ<Student> pq = new MinPQ<Student>(sizetop+1);
 
@@ -76,8 +77,9 @@ public class TopStudent {
      *  Test
      */
     public static void main(String[] args) throws IOException{
+        //String m = args[0];
         TopStudent top= new TopStudent();
-        top.solve("listStudent.txt",5);
+        top.solve("listStudent.txt","5");
         top.display();
         
     } 

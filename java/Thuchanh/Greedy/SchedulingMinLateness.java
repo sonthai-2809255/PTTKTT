@@ -40,7 +40,8 @@ public class SchedulingMinLateness
     }
     
     public static void main(String args[]){
-        Job3 []a ={ new Job3(12, 20),new Job3(20, 20),new Job3(1, 2),new Job3(8,8),new Job3(1, 100),
+        Job3 []a ={ new Job3(12, 20),new Job3(20, 20),
+            new Job3(1, 2),new Job3(8,8),new Job3(1, 100),
             new Job3(20, 30)};
         SchedulingMinLateness sml= new SchedulingMinLateness();
         sml.find(a);
