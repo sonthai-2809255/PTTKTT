@@ -56,9 +56,7 @@ public class FileSearch {
             hash = 31*hash + file.getName().hashCode();
             hash = 31*hash + ((Integer) count).hashCode();
             return hash;
-
         }
-
     }
     /// query a line
     public void query(String string){
@@ -66,7 +64,6 @@ public class FileSearch {
         String words[] = string.split("\\s+");
         query(words);
     }
-    ///  support
     private void query(String [] words){
         if(words.length == 0) StdOut.println("word is null");
         ST<File,Integer> count = new ST<>();
@@ -89,7 +86,6 @@ public class FileSearch {
             result.add(new FileCount(f,count.get(f)));
         }
         Collections.sort(result);
-
     }
     /// return a list sorted
     public List<FileCount> results(){

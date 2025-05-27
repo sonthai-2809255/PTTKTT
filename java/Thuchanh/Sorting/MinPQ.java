@@ -295,19 +295,15 @@ public class MinPQ<Key> implements Iterable<Key> {
      *
      * @param args the command-line arguments
      */
-    public static void main(String[] args) throws IOException {
-        
-        MinPQ<Integer> pq = new MinPQ<Integer>();
-        pq.insert(1);
-        pq.insert(10);
-        pq.insert(9);
-        pq.insert(4);
-        pq.insert(20);
-        pq.insert(4);
-        StdOut.println("size : " + pq.size());
-        for(Integer c: pq){
-            StdOut.println(c + " " );
+    public static void main(String args[]) throws FileNotFoundException{
+        System.setIn(new FileInputStream(new File("tinyPQ.txt")));
+        MinPQ<String> pq = new MinPQ<String>();
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-")) pq.insert(item);
+            else if (!pq.isEmpty()) StdOut.print(pq.delMin() + " ");
         }
+        StdOut.println("(" + pq.size() + " left on pq)");
     }
 
 }

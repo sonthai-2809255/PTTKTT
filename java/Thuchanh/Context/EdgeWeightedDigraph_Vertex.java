@@ -17,10 +17,10 @@ import java.util.Map;
 public class EdgeWeightedDigraph_Vertex {
     private static final String NEWLINE = System.getProperty("line.separator");
 
-    private final int V;                // number of vertices in this digraph
-    private int E;                      // number of edges in this digraph
-    private ST<Vertex, Bag<DirectedEdge_Vertex>> adj;    // adj[v] = list for s-> v
-    private ST<Vertex, Integer> indegree;             // indegree[v] = indegree of vertex v
+    private final int V;                                                            // number of vertices in this digraph
+    private int E;                                                                   // number of edges in this digraph
+    private ST<Vertex, Bag<DirectedEdge_Vertex>> adj;                                // adj[v] = list for s-> v
+    private ST<Vertex, Integer> indegree;                                           // indegree[v] = indegree of vertex v
     private ST<Integer,Vertex> vertex;
     /**
      * Initializes an empty edge-weighted digraph with {@code V} vertices and 0 edges.
@@ -29,7 +29,8 @@ public class EdgeWeightedDigraph_Vertex {
      * @throws IllegalArgumentException if {@code V < 0}
      */
     public EdgeWeightedDigraph_Vertex(int V) {
-        if (V < 0) throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
+        if (V < 0) 
+        throw new IllegalArgumentException("Number of vertices in a Digraph must be nonnegative");
         this.V = V;
         this.E = 0;
         this.indegree = new ST<>();
@@ -59,7 +60,8 @@ public class EdgeWeightedDigraph_Vertex {
      */
     public EdgeWeightedDigraph_Vertex(int V, int E) {
         this(V);
-        if (E < 0) throw new IllegalArgumentException("Number of edges in a Digraph must be nonnegative");
+        if (E < 0) 
+        throw new IllegalArgumentException("Number of edges in a Digraph must be nonnegative");
         for (int i = 0; i < E; i++) {
             int u = StdRandom.uniform(V);
             Vertex v = new Node(u);
@@ -85,11 +87,12 @@ public class EdgeWeightedDigraph_Vertex {
     public EdgeWeightedDigraph_Vertex(In in) {
         this(in.readInt());
         int E = in.readInt();
-        if (E < 0) throw new IllegalArgumentException("Number of edges must be nonnegative");
+        if (E < 0) 
+        throw new IllegalArgumentException("Number of edges must be nonnegative");
         for (int i = 0; i < E; i++) {
             int v =in.readInt();
             int w = in.readInt();
-            validateVertex(vertex.get(v) );
+            validateVertex(vertex.get(v));
             validateVertex(vertex.get(w));
             double weight = in.readDouble();
             addEdge(new DirectedEdge_Vertex(vertex.get(v), vertex.get(w), weight));
@@ -130,7 +133,6 @@ public class EdgeWeightedDigraph_Vertex {
     public int V() {
         return V;
     }
-
     public ST vertex(){return vertex;}
     /**
      * Returns the number of edges in this edge-weighted digraph.
@@ -144,7 +146,7 @@ public class EdgeWeightedDigraph_Vertex {
     // throw an IllegalArgumentException unless {@code 0 <= v < V}
     private void validateVertex(Vertex v) {
         if (Integer.parseInt(v.toString()) < 0 || Integer.parseInt(v.toString()) >= V)
-            throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
+        throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V-1));
     }
 
     /**
@@ -242,11 +244,6 @@ public class EdgeWeightedDigraph_Vertex {
         return s.toString();
     }
 
-    /**
-     * Unit tests the {@code EdgeWeightedDigraph_T} data type.
-     *
-     * @param args the command-line arguments
-     */
     public static void main(String[] args) {
         In in = new In("tinyEWD.txt");
         EdgeWeightedDigraph_Vertex G = new EdgeWeightedDigraph_Vertex(in);

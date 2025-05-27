@@ -1,4 +1,4 @@
-import edu.princeton.cs.algs4.ST;/******************************************************************************
+/******************************************************************************
  *  Biên dịch:  javac EdgeWeightedDirectedCycle.java
  *  Thực thi:    java EdgeWeightedDirectedCycle V E F
  *  Phụ thuộc:   EdgeWeightedDigraph.java DirectedEdge.java Stack.java
@@ -8,68 +8,61 @@ import edu.princeton.cs.algs4.ST;/**********************************************
  *
  ******************************************************************************/
 
-public class EdgeWeightedDirectedCycle_Vertex {
-    private ST<Vertex,Boolean> marked;             // marked[v] = đỉnh v đã được đánh dấu chưa?
-    private ST<Vertex, DirectedEdge_Vertex>  edgeTo;        // edgeTo[v] = cạnh trước đó trên đường đi tới v
-    private ST<Vertex, Boolean > onStack;            // onStack[v] = đỉnh v có đang nằm trên stack không?
-    private Stack<DirectedEdge_Vertex> cycle;    // chu trình có hướng (hoặc null nếu không có chu trình)
+public class EdgeWeightedDirectedCycle_T {
+    private boolean[] marked;             // marked[v] = đỉnh v đã được đánh dấu chưa?
+    private DirectedEdge[] edgeTo;        // edgeTo[v] = cạnh trước đó trên đường đi tới v
+    private boolean[] onStack;            // onStack[v] = đỉnh v có đang nằm trên stack không?
+    private Stack<DirectedEdge> cycle;    // chu trình có hướng (hoặc null nếu không có chu trình)
 
     /**
      * Xác định xem đồ thị có hướng có trọng số {@code G} có chứa một chu trình có hướng hay không và,
      * nếu có, tìm chu trình đó.
      * @param G đồ thị có hướng có trọng số
      */
+    
+    /** với DirectedEdge e: w->v */ 
+    
+    public EdgeWeightedDirectedCycle_T(EdgeWeightedDigraph_T G) {
+        marked  = new boolean[G.V()];
+        onStack = new boolean[G.V()];
+        edgeTo  = new DirectedEdge[G.V()];
+        for (int v = 0; v < G.V(); v++)
+            if (!marked[v]) dfs(G, v);
 
-    /** với DirectedEdge e: w->v */
-
-    public EdgeWeightedDirectedCycle_Vertex(EdgeWeightedDigraph_Vertex G) {
-        marked  = new ST<>();
-        onStack =new ST<>();
-        edgeTo  = new ST<>();
-        for(int v =0; v<G.V();v++){
-            Vertex node = (Vertex) G.vertex().get(v);
-            marked.put(node,false);
-            onStack.put(node,false);
-        }
-        for (int v = 0; v < G.V(); v++) {
-            Vertex node = (Vertex) G.vertex().get(v);
-            if (!marked.get(node)) {
-                dfs(G, node);
-            }
-        }
         // kiểm tra xem đồ thị có chu trình không
         assert check();
     }
 
     // kiểm tra xem thuật toán tính toán thứ tự tô-pô hoặc tìm thấy chu trình có hướng
-    private void dfs(EdgeWeightedDigraph_Vertex G, Vertex v) {
-        onStack.put(v,true);
-        marked.put(v,true);
-        for (DirectedEdge_Vertex e : G.adj(v)) //duyệt trong túi cạnh vào đỉnh v
+    private void dfs(EdgeWeightedDigraph_T G, int v) {
+        onStack[v] = true;
+        marked[v] = true;
+        for (DirectedEdge e : G.adj(v)) //duyệt trong túi cạnh vào đỉnh v
         {
-            Vertex w = e.from();
+            int w = e.from();
+            
             // dừng ngay nếu tìm thấy chu trình có hướng
             if (cycle != null) return;
             // tìm thấy đỉnh mới, tiếp tục đệ quy
-            else if (!marked.get(w)) {
-                edgeTo.put(w,e);
+            else if (!marked[w]) {
+                edgeTo[w] = e;
                 dfs(G, w);
             }
             // truy vết lại chu trình có hướng
-            else if (onStack.get(w)) {
-                cycle = new Stack<DirectedEdge_Vertex>();
+            else if (onStack[w]) {
+                cycle = new Stack<DirectedEdge>();
 
-                DirectedEdge_Vertex f = e;
-                while (!f.to().equals(w)) {
+                DirectedEdge f = e;
+                while (f.to() != w) {
                     cycle.push(f);
-                    f = edgeTo.get(f.to());
+                    f = edgeTo[f.to()];
                 }
                 cycle.push(f);
 
                 return;
             }
         }
-        onStack.put(v,false);
+        onStack[v] = false;
     }
 
     /**
@@ -87,7 +80,7 @@ public class EdgeWeightedDirectedCycle_Vertex {
      * @return một chu trình có hướng (dưới dạng iterable) nếu đồ thị có chứa chu trình có hướng,
      *    và {@code null} nếu ngược lại
      */
-    public Iterable<DirectedEdge_Vertex> cycle() {
+    public Iterable<DirectedEdge> cycle() {
         return cycle;
     }
 
@@ -98,8 +91,8 @@ public class EdgeWeightedDirectedCycle_Vertex {
         // đồ thị có hướng có trọng số có chu trình
         if (hasCycle()) {
             // xác minh chu trình
-            DirectedEdge_Vertex first = null, last = null;
-            for (DirectedEdge_Vertex e : cycle()) {
+            DirectedEdge first = null, last = null;
+            for (DirectedEdge e : cycle()) {
                 if (first == null) first = e;
                 
                 if (last != null) {
@@ -128,19 +121,17 @@ public class EdgeWeightedDirectedCycle_Vertex {
     public static void main(String[] args) {
         //tạo một đồ thị theo file "tinyEWD.txt"
         In in = new In("tinyEWD.txt");
-        EdgeWeightedDigraph_Vertex G = new EdgeWeightedDigraph_Vertex(in);
-        
+        EdgeWeightedDigraph_T G = new EdgeWeightedDigraph_T(in);
         StdOut.println(G);
-
         // tìm một chu trình có hướng
-        EdgeWeightedDirectedCycle_Vertex finder = new EdgeWeightedDirectedCycle_Vertex(G);
+        EdgeWeightedDirectedCycle_T finder = new EdgeWeightedDirectedCycle_T(G);
         if (finder.hasCycle()) {
-            Stack<DirectedEdge_Vertex> cycle = new Stack<>();
+            Stack<DirectedEdge> cycle = new Stack<>();
             StdOut.print("Chu trình: ");
-            for (DirectedEdge_Vertex e : finder.cycle()) {
+            for (DirectedEdge e : finder.cycle()) {
                 cycle.push(e);
             }
-            for(DirectedEdge_Vertex e: cycle){
+            for(DirectedEdge e: cycle){
                 StdOut.print(e + " ");
             }
             StdOut.println();

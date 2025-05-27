@@ -9,10 +9,10 @@ import edu.princeton.cs.algs4.ST;/**********************************************
  ******************************************************************************/
 
 public class EdgeWeightedDirectedCycle_Vertex {
-    private ST<Vertex,Boolean> marked;             // marked[v] = đỉnh v đã được đánh dấu chưa?
+    private ST<Vertex,Boolean> marked;                       // marked[v] = đỉnh v đã được đánh dấu chưa?
     private ST<Vertex, DirectedEdge_Vertex>  edgeTo;        // edgeTo[v] = cạnh trước đó trên đường đi tới v
-    private ST<Vertex, Boolean > onStack;            // onStack[v] = đỉnh v có đang nằm trên stack không?
-    private Stack<DirectedEdge_Vertex> cycle;    // chu trình có hướng (hoặc null nếu không có chu trình)
+    private ST<Vertex, Boolean > onStack;                    // onStack[v] = đỉnh v có đang nằm trên stack không?
+    private Stack<DirectedEdge_Vertex> cycle;           // chu trình có hướng (hoặc null nếu không có chu trình)
 
     /**
      * Xác định xem đồ thị có hướng có trọng số {@code G} có chứa một chu trình có hướng hay không và,
@@ -58,14 +58,12 @@ public class EdgeWeightedDirectedCycle_Vertex {
             // truy vết lại chu trình có hướng
             else if (onStack.get(w)) {
                 cycle = new Stack<DirectedEdge_Vertex>();
-
                 DirectedEdge_Vertex f = e;
                 while (!f.to().equals(w)) {
                     cycle.push(f);
                     f = edgeTo.get(f.to());
                 }
                 cycle.push(f);
-
                 return;
             }
         }
@@ -94,7 +92,6 @@ public class EdgeWeightedDirectedCycle_Vertex {
 
     // xác minh rằng đồ thị hoặc là không có chu trình hoặc có chứa chu trình có hướng
     private boolean check() {
-
         // đồ thị có hướng có trọng số có chu trình
         if (hasCycle()) {
             // xác minh chu trình
@@ -116,7 +113,6 @@ public class EdgeWeightedDirectedCycle_Vertex {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -129,9 +125,7 @@ public class EdgeWeightedDirectedCycle_Vertex {
         //tạo một đồ thị theo file "tinyEWD.txt"
         In in = new In("tinyEWD.txt");
         EdgeWeightedDigraph_Vertex G = new EdgeWeightedDigraph_Vertex(in);
-        
         StdOut.println(G);
-
         // tìm một chu trình có hướng
         EdgeWeightedDirectedCycle_Vertex finder = new EdgeWeightedDirectedCycle_Vertex(G);
         if (finder.hasCycle()) {

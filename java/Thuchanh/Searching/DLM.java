@@ -4,16 +4,9 @@ import java.util.ArrayList;
 public class DLM{
     private Monhoc monhoc;
     private ST<String,Student> dssv;
-    
     public static String DSSV = "student.csv";
-    public static String CSDL = "Csdl_03_04.csv";
-    public static String JAVA = "Java_03_04.csv";
-    public static String TRR = "Trr_03_03.csv";
 
-    // Constructer Danh Sách lớp Môn với đầu vào là một In 
-    //cho Danh sách sinh viên
     public DLM(){}
-
     public DLM(In in){
         dssv = new ST<String,Student>();
         
@@ -30,7 +23,12 @@ public class DLM{
         return dssv;
     }
     
-    public void inpputRate(String fileMon){
+    public void inputRate(String [] fileMon){
+        for(String f: fileMon){
+            this.inputRate(f);
+        }
+    }       
+    public void inputRate(String fileMon){
         
         String [] a= fileMon.split("\\.");
         String token= a[0];
@@ -55,6 +53,7 @@ public class DLM{
 
     }
     
+    /** theo tên*/
     public void displaySortByname(){
         List<Student> liststudent = new ArrayList();
         for(String c: dssv.keys()){
@@ -67,13 +66,12 @@ public class DLM{
              StdOut.println(student+"\t");
         }
     }
-    
+    /**theo masv*/
     public void display(){
         for(String c : dssv.keys()){
             display(dssv.get(c));
         }
     }
-
     public void display(Student student ){
         StdOut.print(student+"\t");
         //
@@ -84,6 +82,7 @@ public class DLM{
         }
         StdOut.println();
     }
+    
     public double TBC(){
         double sum=0.0;
         for(String c: dssv.keys())
@@ -103,32 +102,27 @@ public class DLM{
     public void addStudent(String masv, Student sv){
         dssv.put(masv, sv);
     }
-
+    
     public Student getStudent(String msv){
         return dssv.get(msv);
     }
-
+    
     public Iterable<String> keys(){
         return dssv.keys();
     }
-
+    
     public int size(){
         return dssv.size();
     }
+    
     public static void main(String args[]){
-        //tạo ds
         DLM dlm= new DLM(new In(DSSV));
-        //sắp xếp theo tên
+        //
         dlm.displaySortByname();
         //tính điểm trung bình chung cả lớp
-        System.out.println("---------");
         System.out.println("điểm trung bình chung: "+ dlm.TBC());
-        
         //nhập điểm môn
-        for(String filename : args ){
-            dlm.inpputRate(filename);
-        }
-        System.out.println("---------");
+        dlm.inputRate(args);
         dlm.display();
         ///
         dlm.searchStudent("111111111");

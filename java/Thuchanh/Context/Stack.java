@@ -69,11 +69,8 @@ public class Stack<Item> implements Iterable<Item> {
     public void push(Item item) {
         Node<Item> oldfirst = first;
         first = new Node<Item>();
-
-       // Cap nhat phan tu dau va phan tu tiep theo ....
-        first.item=item;
+        first.item = item;
         first.next = oldfirst;
-        
         n++;
     }
 
@@ -157,7 +154,7 @@ public class Stack<Item> implements Iterable<Item> {
      *
      * @param args the command-line arguments
      */
-   public static void main(String[] args)throws IOException {
+    public static void main(String[] args)throws IOException {
         System.setIn(new FileInputStream(new File("tobe.txt")));
         Stack<String> stack = new Stack<String>();
         while (!StdIn.isEmpty()) {

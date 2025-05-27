@@ -81,17 +81,14 @@ public class Queue<Item> implements Iterable<Item> {
     public void enqueue(Item item) {
         Node<Item> oldlast = last;
         last = new Node<Item>();
-
-        // Dua phan tu moi vao cuoi .....
-        last.next= null;
-        last.item= item;
-        if(isEmpty()) first= last;
-        else oldlast.next = last;
+        last.item = item;
+        last.next = null;
+        if (isEmpty()) first = last;
+        else           oldlast.next = last;
         n++;
     }
 
     /**
-     * Bổ Sung
      * Removes and returns the item on this queue that was least recently added.
      *
      * @return the item on this queue that was least recently added
@@ -99,11 +96,10 @@ public class Queue<Item> implements Iterable<Item> {
      */
     public Item dequeue() {
         if (isEmpty()) throw new NoSuchElementException("Queue underflow");
-        // Lay phan tu dau ra ....
         Item item = first.item;
         first = first.next;
         n--;
-        if (isEmpty()) last = null; 
+        if (isEmpty()) last = null;   // to avoid loitering
         return item;
     }
 

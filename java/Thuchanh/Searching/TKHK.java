@@ -16,17 +16,12 @@ public class TKHK
     public static String CSDL = "Csdl_03_04.csv";
     public static String JAVA = "Java_03_04.csv";
     public static String TRR = "Trr_03_03.csv";
-    /**
-     * Constructor for objects of class TKHK
-     */
     public TKHK(){
-        
         dssvlop = new DLM();
         for(int i=1 ; i< monhk.length; i++)
         {
             monhk[i] = new ArrayList<>();
         }
-        
     }
     
     public TKHK(String[] args){
@@ -36,17 +31,9 @@ public class TKHK
         {
             monhk[i] = new ArrayList<>();
         }
-        
-        while(in.hasNextLine()){
-            String line = in.readLine();
-            String[] parts = line.split(",");
-            String key = parts[0];
-            Student val = new Student(line);
-            dssvlop.addStudent(key,val);
-        }
         /// nhập điểm lớp môn
         for(int i =1 ;i< args.length; i++){
-            nhapdiem(args[i]);
+            inputRate(args[i]);
         }
 
      }
@@ -54,7 +41,7 @@ public class TKHK
     public DLM getdssvlop(){ return dssvlop;}
 
     /// đọc file điểm môn của lớp
-    private void nhapdiem(String filename){
+    private void inputRate(String filename){
         
         String [] a= filename.split("\\.");
         String token= a[0];
@@ -66,13 +53,11 @@ public class TKHK
         Monhoc monhoc= new Monhoc(tenmon,tinchi,kythu);
         monhk[kythu].add(monhoc);
 
-        dssvlop.inpputRate(filename);
+        dssvlop.inputRate(filename);
     }
     /// tổng kết học kỳ lớp
     public void tkhklop(){
-
         StdOut.println("");
-
         for( String msv : dssvlop.keys()){
             //
             Student student = dssvlop.getStudent(msv);
@@ -82,13 +67,35 @@ public class TKHK
                 if (monhk[i].size() != 0){
                     double diem = student.Tbhocky(i);
                     //
-                    StdOut.printf("%4.4f "+ "kỳ"+ i +xetthidua(diem)+"            ", diem);
+                    StdOut.printf("%4.4f "+ "kỳ"+ i +"            ", diem);
                 }
             }
             StdOut.println("");
             //
         }
     }
+    
+    public void tkhklop(String kythu){
+        int i = Integer.parseInt(kythu);
+        if(monhk[i] == null) return;
+        for(String msv : dssvlop.keys()){
+            Student sv = dssvlop.getStudent(msv);
+            StdOut.println(sv + " diem:"+ sv.Tbhocky(i));
+        }
+    }
+    
+    public void tbhk(String msv,int kythu){
+        Student student =(Student) dssvlop.getStudent(msv);
+        StdOut.printf("%10s %10s %10s %10.4f" + "ky"+kythu, student.maSv(), student.hodem(),student.ten(),student.Tbhocky(kythu));
+        StdOut.println("");
+    }
+    
+    public static void main(String args[]){
+        TKHK tongket= new TKHK(args);
+        tongket.tkhklop("4");
+        
+    }
+    
     
     private String xetthidua(double diem){
         if(diem>= 3.6) return "xuat_sac";
@@ -97,7 +104,6 @@ public class TKHK
         if(diem>= 2.0 && diem< 2.5) return "trungbinh";
         return "yeu";
     }
-
     public void Tbhk(){
         for(int i=1 ; i< monhk.length; i++){
             if(monhk [i] != null){
@@ -111,23 +117,4 @@ public class TKHK
             }
         }
     }
-
-    public void tbhk(String msv,int kythu){
-        Student student =(Student) dssvlop.getStudent(msv);
-        StdOut.printf("%10s %10s %10s %10.4f" + "ky"+kythu, student.maSv(), student.hodem(),student.ten(),student.Tbhocky(kythu));
-        StdOut.println("");
-    }
-    
-    public static void main(String args[]){
-        TKHK tongket= new TKHK(args);
-
-        tongket.tbhk("111111111",4);
-        System.out.println("---------");
-        tongket.tkhklop();
-        System.out.println("---------");
-        StdOut.println("Điểm trung bình chung: ");
-        tongket.Tbhk();
-        
-    }
-    
     }

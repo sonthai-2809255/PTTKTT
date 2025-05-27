@@ -5,7 +5,7 @@ Problem using backtracking */
 class AllSolNQueen  
 { 
   
-static int N = 4;
+static int N = 8;
 static int k = 1; 
   
 /* A utility function to print solution */

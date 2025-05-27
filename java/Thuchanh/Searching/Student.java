@@ -125,9 +125,6 @@ public class Student implements Comparable<Student> {
     public int compareTo(Student that) {
         return Double.compare(this.diemTb, that.diemTb);
     }
-    //public int compareTo(Student that) {
-    //return this.maSv.compareTo(that.maSv);
-    //}
     
     /**
     * So sánh sinh viên này với một đối tượng khác.
@@ -169,7 +166,7 @@ public class Student implements Comparable<Student> {
        return hash;
        // return Objects.hash(maSv,hodem, ten, ngaysinh, diemTb);
    }
-   
+   /** Tính điểm trung bình */
    public double Tbc(){
        double Sdiem   = 0.0;
        int    Stinchi = 0;
@@ -192,7 +189,11 @@ public class Student implements Comparable<Student> {
             Sdiem += bd.get(c);
             Stinchi += c.tinchi();
         }
-        return (double)Sdiem/Stinchi;  
+        
+        double result= (double)Sdiem/Stinchi; 
+        result = Math.round(result *100.0)/100.0;
+        return result;
+        
     }
     
   public static void main(String[] args) {

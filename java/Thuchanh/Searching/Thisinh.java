@@ -62,7 +62,7 @@ public class Thisinh implements Comparable<Thisinh> {
     }
     
     /** 
-     * so sanh hai sinh vien theo ten
+     * so sánh
      */
     public static class tenOrder implements Comparator<Thisinh>{
         public int compare(Thisinh v, Thisinh w) {
@@ -70,23 +70,14 @@ public class Thisinh implements Comparable<Thisinh> {
             return v.hodem.compareTo(w.hodem);
         }
     }
-    /** 
-     * so sanh hai sinh vien theo ngaysinh
-     */
     public static class ngaysinhOrder implements Comparator<Thisinh>{
         public int compare(Thisinh v, Thisinh w) {
             return v.ngaysinh.compareTo(w.ngaysinh);        }
     }
-    /** 
-     * so sanh hai sinh vien theo que
-     */
     public static class queOrder implements Comparator<Thisinh>{
         public int compare(Thisinh v, Thisinh w) {
             return v.que.compareTo(w.que);        }
     }
-     /** 
-     * so sanh hai sinh vien theo diemTb
-     */
     public static class diemOrder implements Comparator<Thisinh>{
         public int compare(Thisinh v, Thisinh w) {
             return Double.compare(v.diemTb,w.diemTb);        }
