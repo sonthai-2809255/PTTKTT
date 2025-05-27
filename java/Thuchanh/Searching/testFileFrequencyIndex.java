@@ -18,10 +18,5 @@ public class testFileFrequencyIndex
 //        fi.readFile(filename);
 //        fi.query("the");
 //        fi.query("tank");
-
-        FileSearch fs = new FileSearch();
-        fs.readfile(filename);
-        fs.query("the best of times");
-        StdOut.println(fs.results());
     }
 }

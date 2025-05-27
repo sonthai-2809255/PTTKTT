@@ -17,6 +17,7 @@ comment13.target=int\ hashCode()
 comment13.text=\r\n\ Tr\u1EA3\ v\u1EC1\ m\u00E3\ b\u0103m\ c\u1EE7a\ sinh\ vi\u00EAn\ n\u00E0y.\r\n\r\n\ @return\ m\u00E3\ b\u0103m\ c\u1EE7a\ sinh\ vi\u00EAn\ n\u00E0y\r\n
 comment14.params=
 comment14.target=double\ Tbc()
+comment14.text=T\u00EDnh\ \u0111i\u1EC3m\ trung\ b\u00ECnh
 comment15.params=kythu
 comment15.target=double\ Tbhocky(int)
 comment16.params=args

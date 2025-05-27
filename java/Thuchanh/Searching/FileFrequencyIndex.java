@@ -12,40 +12,35 @@ import java.util.ArrayList;
 public class FileFrequencyIndex
 {
     private ST <String, ST< File, Integer>> st ;
-    
-    /**
-     * Constructor for objects of class FileFrequencyIndex
-     */
+    /** Constructor for objects of class FileFrequencyIndex*/
     public FileFrequencyIndex() {
          st =new  ST <String, ST< File, Integer>>();
         
     }
     
+    public ST query(String word){
+        StdOut.println("searching : " + word);
+        if(!st.contains(word))
+                return null;
+        return  st.get(word);
+    }
     
-    public void query(String word){
-         StdOut.println(word);
-         List<FileFrequency> list = new ArrayList<>();
-
-        if(!st.contains(word)) 
-            {
-                StdOut.println("   not contains " + word);
-                return ;
-            }
-            
-        ST<File,Integer> a= st.get(word);
-            
-        for(File c : a.keys()){
-            list.add(new FileFrequency(c,a.get(c)));
+    /** phương thức bổ trợ */
+    public void print(ST<File,Integer> st){
+        if(st == null) {
+            StdOut.println("not found");
+            return;
+        }
+        List <FileFrequency> list = new ArrayList<>();
+        for(File c : st.keys()){
+            list.add(new FileFrequency(c,st.get(c)));
         }
         Collections.sort(list);
         for(FileFrequency c: list){
             StdOut.println("  "+ c);
         }
     }
-    
-    /** phương thức bổ trợ */
     public void readFile (String args[]){
-        
          StdOut.println("Indexing files");
         for(String filename : args){
             StdOut.println("    " + filename);
@@ -69,5 +64,15 @@ public class FileFrequencyIndex
             }
             in.close();
         }
+    }
+    
+    public ST<String,ST<File,Integer>> getST(){ return st;}
+    
+    public static void main (String args[]) throws java.io.FileNotFoundException {
+        FileFrequencyIndex fi= new FileFrequencyIndex();
+        String filename[] ={"ex1.txt", "ex2.txt","ex3.txt","ex4.txt"};
+        fi.readFile(filename);
+        fi.print(fi.query("the"));
+        fi.print(fi.query("tank"));
     }
 }

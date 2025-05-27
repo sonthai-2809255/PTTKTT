@@ -1,95 +1,104 @@
 import java.io.File;
 import java.util.*;
 public class FileSearch {
-    private ST<String,ST<File,Integer>> filecount;
-    private List<FileCount> result;
+    private FileFrequencyIndex ffi;
+    
     public FileSearch(){
-        filecount = new ST<>();
-        result = new ArrayList<>();
+        ffi = new FileFrequencyIndex();
     }
 
     public void readfile(String args[]){
-        StdOut.println("Reading files:");
-        for(String filename : args){
-            StdOut.println("    " + filename);
-            File file = new File (filename);
-            file.setReadable(true);
-            In in = new In(file);
-            while(!in.isEmpty()){
-                String word = in.readString();
-                if(filecount.contains(word)) {
-                    if(filecount.get(word).contains(file)) {
-                        filecount.get(word).put(file, filecount.get(word).get(file) + 1);
-                    }
-                    else {
-                        filecount.get(word).put(file, 1);
-                    }
-                }
-                else {
-                    filecount.put(word,new ST<File,Integer>());
-                    filecount.get(word).put(file,1);
-                }
-            }
-            in.close();
-            if(filecount == null) StdOut.print("filecount is null");
-
-        }
-
-    }
-
-    ///
-    public static class FileCount implements Comparable<FileCount>{
-        private File file;
-        private int count;
-        public FileCount(File file,int count){
-            this.file= file;
-            this.count= count;
-        }
-        public int compareTo(FileCount that){
-            return Integer.compare(that.count, this.count);
-        }
-        public String toString(){
-            return String.format(file + "   " + count);
-        }
-        public int hashCode(){
-            int hash =1;
-            hash = 31*hash + file.getName().hashCode();
-            hash = 31*hash + ((Integer) count).hashCode();
-            return hash;
-        }
+        ffi.readFile(args);
     }
     /// query a line
-    public void query(String string){
-        StdOut.println("query: " + string);
-        String words[] = string.split("\\s+");
-        query(words);
-    }
-    private void query(String [] words){
-        if(words.length == 0) StdOut.println("word is null");
-        ST<File,Integer> count = new ST<>();
-
-        for(String w : words){
-            StdOut.print("["+ w + "] ");
-
-            if (filecount.contains(w)){
-                for(File f : filecount.get(w).keys()){
-                    if(!count.contains(f)) count.put(f,0);
-                    //
-                    int countf = filecount.get(w).get(f) ;
-                    count.put(f,count.get(f)+countf);
+    public SET query(String word1,String word2){
+        StdOut.println("searching for: " + word1 + "," + word2);
+        String [] words = {word1,word2};
+        Map<File,Integer> count = new HashMap<>();
+        for(String w: words){
+            ST<File,Integer> tempt1 = ffi.query(w);
+            if (tempt1 == null) {
+                return null;
+            }
+            for (File f : tempt1.keys()) {
+                if (!count.containsKey(f)) //O(1)
+                {
+                    count.put(f, 0);//O(1)
+                }
+                count.put(f,count.get(f) + 1);//O(1)
+            }
+        }
+        HashMap <File,Integer> section = new HashMap<>();
+        for(File f: count.keySet()){
+            if(count.get(f)==words.length)//O(1)
+            {
+                for(String w: words){
+                    if(!section.containsKey(f)) section.put(f,0);
+                    section.put(f,ffi.getST().get(w).get(f)+section.get(f));
                 }
             }
         }
-        StdOut.println();
-        //
-        for(File f : count.keys()){
-            result.add(new FileCount(f,count.get(f)));
+        SET<FileCount> set = new SET<>();
+        for(File f: section.keySet()){
+            set.add(new FileCount(f,section.get(f)));
         }
-        Collections.sort(result);
+        return set;
     }
-    /// return a list sorted
-    public List<FileCount> results(){
-        return result;
+    public SET query(String String){
+        StdOut.println("searching for: " + String);
+        String [] words = String.split("\\s+");
+        SET set = query(words);
+        return set;
+    }
+    private SET query(String [] words){
+        Map<File,Integer> count = new HashMap<>();
+        for(String w: words){
+            ST<File,Integer> tempt = ffi.query(w);
+            if (tempt == null) {
+                return null;
+            }
+            for (File f : tempt.keys()) {
+                if (!count.containsKey(f)) //O(1)
+                {
+                    count.put(f, 0);//O(1)
+                }
+                count.put(f, count.get(f) + 1);//O(1)
+            }
+        }
+        HashMap <File,Integer> section = new HashMap<>();
+        for(File f: count.keySet()){
+            if(count.get(f)==words.length)//O(1)
+            {
+                for(String w: words){
+                    if(!section.containsKey(f)) section.put(f,0);
+                    section.put(f,ffi.getST().get(w).get(f)+section.get(f));
+                }
+            }
+        }
+        SET<FileCount> set = new SET<>();
+        for(File f: section.keySet()){
+            set.add(new FileCount(f,section.get(f)));
+        }
+        return set;
+    }
+
+    public void print(SET<FileCount> set){
+        if(set == null) {
+            StdOut.println("not found");
+            return;
+        }
+        for(FileCount f : set){
+            StdOut.println(f);
+        }
+    }
+
+    public static void main(String[] args) {
+        FileSearch fs = new FileSearch();
+        String filename[] ={"ex1.txt", "ex2.txt","ex3.txt","ex4.txt"};
+        fs.readfile(filename);
+        fs.print(fs.query("the best of times"));
+        fs.print(fs.query("the","tank"));
+        fs.print(fs.query("the","it"));
     }
 
 }

@@ -1,8 +1,7 @@
 #BlueJ class context
 comment0.target=Thisinh
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Thisinh\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=hodem\ ten\ ngaysinh\ que\ diemTb
-comment1.target=Thisinh(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.params=hodem\ ten\ ngaysinh\ que
+comment1.target=Thisinh(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Thisinh\r\n
 comment10.params=diem
 comment10.target=void\ setDTB(double[])
